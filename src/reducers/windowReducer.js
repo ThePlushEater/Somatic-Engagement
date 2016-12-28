@@ -11,6 +11,7 @@ const defaultState = Immutable({
   percentage: 0,
   navPoses: [0, 0, 0, 0],
   openLibrary: false,
+  researchItem: null,
 });
 
 export default function reducer(state = defaultState, action) {
@@ -23,6 +24,9 @@ export default function reducer(state = defaultState, action) {
     }
     case "SET_OPEN_LIBRARY": {
       return state.merge({openLibrary: action.payload});
+    }
+    case "SET_RESEARCH_ITEM": {
+      return state.merge({researchItem: action.payload});
     }
     case "SET_SCROLL_X_PERCENTAGE": {
       let route;

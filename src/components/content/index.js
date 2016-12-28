@@ -30,19 +30,19 @@ export default class Content extends React.Component {
   }
   componentWillReceiveProps(nextProps) {
     setTimeout(function() {
-      convertLinksOpenInNewWindow(ReactDom.findDOMNode(this.refs['post-about']));
+      convertLinksOpenInNewWindow(ReactDom.findDOMNode(this.refs['content']));
     }.bind(this), 100);
   }
   handleToggleLibrary(value, event) {
     if (this.props.window.size[0] < 1024) {
-      console.log(this.props.window.openLibrary, value);
-      if (this.props.window.openLibrary == false && value == false) {
-        this.props.dispatch({type: "SET_OPEN_LIBRARY", payload: true});
-      } else if (this.props.window.openLibrary == true && value == true) {
-        this.props.dispatch({type: "SET_OPEN_LIBRARY", payload: false});
-      } else {
-        this.props.dispatch({type: "SET_OPEN_LIBRARY", payload: value});
-      }
+      // if (this.props.window.openLibrary == false && value == false) {
+      //   this.props.dispatch({type: "SET_OPEN_LIBRARY", payload: true});
+      // } else if (this.props.window.openLibrary == true && value == true) {
+      //   this.props.dispatch({type: "SET_OPEN_LIBRARY", payload: false});
+      // } else {
+      //   this.props.dispatch({type: "SET_OPEN_LIBRARY", payload: value});
+      // }
+      this.props.dispatch({type: "SET_OPEN_LIBRARY", payload: value});
       const page2 = ReactDom.findDOMNode(this.refs['page-2']);
       page2.scrollTop = 0;
     }
@@ -55,6 +55,9 @@ export default class Content extends React.Component {
   }
   handleCloseLibrary(event) {
     this.props.dispatch({type: "SET_OPEN_LIBRARY", payload: false});
+  }
+  handleClickResearchItem(item, event) {
+    this.props.dispatch({type: "SET_RESEARCH_ITEM", payload: item});
   }
   render() {
     const { localization } = this.props.localization;
@@ -78,21 +81,62 @@ export default class Content extends React.Component {
     const researches = posts.map((item, index) => {
       if (item.categories.length > 0 && item.categories.indexOf(serverConfig.iResearch) > -1)  {
         return <li className="post" key={"research-" + index}>
-          <div dangerouslySetInnerHTML={{__html: item.title.rendered}} />
+          <div dangerouslySetInnerHTML={{__html: item.title.rendered}} onClick={this.handleClickResearchItem.bind(this, item)}/>
         </li>;
       }
       return null;
     });
 
+    let page1Top, page2Right;
     let openLibrary = " hide";
     let openNews = "";
     if (window.openLibrary) {
       openLibrary = "";
       openNews = " hide";
     }
+    if (window.researchItem) {
+      page1Top = <div className="top research-back" onClick={this.handleClickResearchItem.bind(this, null)}>
+        Back to list
+      </div>;
+      page2Right = <div className={"right" + openLibrary}>
+        <div className="top" onClick={this.handleToggleLibrary.bind(this, true)}>
+          <div dangerouslySetInnerHTML={{__html: window.researchItem.title.rendered}} />
+        </div>
+        <div className="middle">
+          <div className="container text">
+            <div dangerouslySetInnerHTML={{__html: window.researchItem.content.rendered}} />
+          </div>
+        </div>
+        <div className="bottom">
+          <div className="button" onClick={this.handleClickResearchItem.bind(this, null)}>
+            Back to list
+          </div>
+        </div>
+      </div>;
+    } else {
+      page1Top = <div className="top" onClick={this.handleToggleLibrary.bind(this, false)}>
+        SOMA News
+      </div>;
+      page2Right = <div className={"right" + openLibrary}>
+        <div className="top" onClick={this.handleToggleLibrary.bind(this, true)}>
+          SOMA Research
+        </div>
+        <div className="middle">
+          <ul className="container">
+            { researches }
+          </ul>
+        </div>
+        <div className="bottom">
+          <div className="button" onClick={this.handleCloseLibrary.bind(this)}>
+            Leave SOMA library
+          </div>
+        </div>
+      </div>;
+    }
+
 
     return(
-      <div className="content">
+      <div ref="content" className="content">
         <div className="page page-1">
           <div className="left">
             <div className="title">
@@ -115,30 +159,14 @@ export default class Content extends React.Component {
           <div className="button-library" onClick={this.handleOpenLibrary.bind(this)}>
           </div>
           <div className={"left" + openNews}>
-            <div className="top" onClick={this.handleToggleLibrary.bind(this, false)}>
-              SOMA News
-            </div>
+            { page1Top }
             <div className="bottom">
               <div className="container">
                 { news }
               </div>
             </div>
           </div>
-          <div className={"right" + openLibrary}>
-            <div className="top" onClick={this.handleToggleLibrary.bind(this, true)}>
-              SOMA Research
-            </div>
-            <div className="middle">
-              <ul className="container">
-                { researches }
-              </ul>
-            </div>
-            <div className="bottom">
-              <div className="button" onClick={this.handleCloseLibrary.bind(this)}>
-                Leave SOMA library
-              </div>
-            </div>
-          </div>
+          { page2Right }
         </div>
         <div className="page page-3">
         </div>

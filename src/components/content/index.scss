@@ -184,6 +184,12 @@
           width: 100%;
           font-size: $font-x-large;
         }
+        &.research-back {
+          font-size: $font-medium;
+          @include respond-to(portrait) {
+            font-size: $font-medium;
+          }
+        }
       }
       > .bottom {
         -webkit-flex-grow: 1;
@@ -205,6 +211,7 @@
           @include respond-to(portrait) {
             height: auto;
           }
+
         }
       }
     }
@@ -229,16 +236,14 @@
       -webkit-flex-direction: column;
               flex-direction: column;
 
-
-
       &.hide {
         opacity: 0;
         pointer-events: none;
       }
       opacity: 1;
-      -webkit-transition: opacity 1s;
-         -moz-transition: opacity 1s;
-              transition: opacity 1s;
+      -webkit-transition: opacity 0.75s;
+         -moz-transition: opacity 0.75s;
+              transition: opacity 0.75s;
 
       -webkit-transition-delay: 0.5s; /* Safari */
               transition-delay: 0.5s;
@@ -317,6 +322,13 @@
             overflow: inherit;
             list-style-position: outside;
             margin-left: 8px;
+          }
+          &.text {
+            padding: 8px;
+            margin: 0;
+            @include respond-to(portrait) {
+              padding: 0;
+            }
           }
 
           > .post {

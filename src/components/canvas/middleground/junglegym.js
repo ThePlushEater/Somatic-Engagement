@@ -291,7 +291,8 @@ export default class Junglegym extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { parent, window, canvas, item } = nextProps;
     // Hit detection with the player.
-    if ((this.object.position.x - this.baseLeft.texture.width < canvas.player.x + canvas.player.texture.width * 0.4) && (this.object.position.x + this.baseRight.texture.width > canvas.player.x - canvas.player.texture.width * 0.4) ) {
+    let scale = Math.min(window.size[0] / window.minSize[0], 1);
+    if ((this.object.position.x - this.baseLeft.texture.width * scale < canvas.player.x + canvas.player.texture.width * 0.4) && (this.object.position.x + this.baseRight.texture.width * scale > canvas.player.x - canvas.player.texture.width * 0.4) ) {
       if (!this.state.active) {
         this.setState({
           active: true,

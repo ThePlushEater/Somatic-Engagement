@@ -139,41 +139,235 @@
     a {
       color: #963200;
     }
-    -webkit-flex-direction: column;
-            flex-direction: column;
-    > .top {
-      color: #606060;
-      font-family: $font-bold;
-      font-size: $font-xx-large;
-      line-height: 1.15;
-      padding: 36px 4% 8px 4%;
-      width: 50%;
-      position: relative;
+    position: relative;
+    > .button-library {
+      position: absolute;
+      left: 64%;
+      bottom: 7.5%;
+      width: 10%;
+      height: 20%;
+      cursor: pointer;
       @include respond-to(portrait) {
-        padding: 24px 16px 8px 16px;
-        width: 100%;
-        font-size: $font-x-large;
+        display: none;
       }
     }
-    > .bottom {
-      -webkit-flex-grow: 1;
-              flex-grow: 1;
-      padding: 8px 4% 16% 4%;
+    > .left {
       width: 50%;
-      height: 50%;
-      position: relative;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+
+      -webkit-flex-direction: column;
+              flex-direction: column;
       @include respond-to(portrait) {
-        padding: 8px 12px;
+        width: 100%;
+        &.hide {
+          display: block;
+          > .bottom {
+            display: none;
+          }
+        }
+      }
+
+      > .top {
+        color: #606060;
+        font-family: $font-bold;
+        font-size: $font-xx-large;
+        line-height: 1.15;
+        padding: 36px 4% 8px 8%;
+        width: 100%;
+        position: relative;
+        @include respond-to(portrait) {
+          padding: 24px 16px 8px 16px;
+          width: 100%;
+          font-size: $font-x-large;
+        }
+      }
+      > .bottom {
+        -webkit-flex-grow: 1;
+                flex-grow: 1;
+        padding: 8px 4% 28% 8%;
+        width: 100%;
+        height: 50%;
+        position: relative;
+        @include respond-to(portrait) {
+          padding: 8px 12px;
+          width: 100%;
+          height: auto;
+        }
+        > .container {
+          width: 100%;
+          height: 100%;
+          overflow-y: scroll;
+          padding: 0 8px;
+          @include respond-to(portrait) {
+            height: auto;
+          }
+        }
+      }
+    }
+    > .right {
+      position: absolute;
+      top: 4%;
+      left: 4%;
+      width: 92%;
+      height: 92%;
+      border: 4px solid #765A4C;
+      background-color: #ffeed2;
+      background-position: center bottom;
+      background-image: url(./bookshelf.png);
+      background-repeat: no-repeat;
+
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+
+      -webkit-flex-direction: column;
+              flex-direction: column;
+
+
+
+      &.hide {
+        opacity: 0;
+        pointer-events: none;
+      }
+      opacity: 1;
+      -webkit-transition: opacity 1s;
+         -moz-transition: opacity 1s;
+              transition: opacity 1s;
+
+      -webkit-transition-delay: 0.5s; /* Safari */
+              transition-delay: 0.5s;
+
+      @include respond-to(portrait) {
+        display: block;
+        position: relative;
+        top: 0;
+        left: 0;
         width: 100%;
         height: auto;
+        border: none;
+        background: none;
+        &.hide {
+          pointer-events: all;
+          opacity: 1;
+          display: block;
+          > .middle {
+            display: none;
+          }
+        }
+        > .bottom {
+          display: none;
+        }
       }
-      > .container {
+      > .top {
+        text-align: center;
+        color: #606060;
+        font-family: $font-bold;
+        font-size: $font-xx-large;
+        line-height: 1.15;
+        padding: 24px 4% 8px 4%;
         width: 100%;
-        height: 100%;
-        overflow-y: scroll;
-        padding: 0 8px;
+        position: relative;
         @include respond-to(portrait) {
+          text-align: left;
+          padding: 24px 16px 8px 16px;
+          width: 100%;
+          font-size: $font-x-large;
+        }
+      }
+      > .middle {
+        -webkit-flex-grow: 1;
+                flex-grow: 1;
+        padding: 8px 4% 24px 4%;
+        width: 100%;
+        height: 50%;
+        position: relative;
+        @include respond-to(portrait) {
+          padding: 8px 12px;
+          width: 100%;
           height: auto;
+        }
+        > .container {
+          width: 100%;
+          height: 100%;
+          overflow-y: scroll;
+          padding: 0 8px;
+
+          display: -webkit-box;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: -webkit-flex;
+          display: flex;
+
+          -webkit-flex-direction: row;
+                  flex-direction: row;
+
+          flex-wrap: wrap;
+          justify-content: flex-start;
+
+          @include respond-to(portrait) {
+            height: auto;
+            display: block;
+            text-align: left;
+            overflow: inherit;
+            list-style-position: outside;
+            margin-left: 8px;
+          }
+
+          > .post {
+            width: calc(33.3% - 16px);
+            height: calc(33.3% - 16px);
+            margin: 8px;
+
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+
+            border: 1px solid #606060;
+            border-radius: 1px;
+
+            @include respond-to(portrait) {
+              width: auto;
+              height: auto;
+              margin: 0 4px;
+              border: none;
+              display: list-item;
+            }
+
+            > div {
+              font-family: $font-bold;
+              padding: 8px;
+              margin: auto;
+              line-height: 1.75;
+              text-align: center;
+              cursor: pointer;
+              @include respond-to(portrait) {
+                text-align: left;
+                padding: 4px 8px 4px 0;
+                color: #963200;
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+
+      > .bottom {
+        text-align: right;
+        > .button {
+          display: inline-block;
+          font-family: $font-bold;
+          font-weight: 700;
+          color: #000000;
+          padding: 8px 12px;
+          cursor: pointer;
         }
       }
     }

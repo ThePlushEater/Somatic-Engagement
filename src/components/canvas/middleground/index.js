@@ -7,6 +7,7 @@ import * as PIXI from 'pixi.js';
 import Flower from "./../foreground/flower";
 import Seesaw from "./seesaw";
 import Junglegym from "./Junglegym";
+import Library from "./library";
 
 
 export default class Middleground extends React.Component {
@@ -38,6 +39,9 @@ export default class Middleground extends React.Component {
       ],
       junglegyms: [
         { type: "JUNGLEGYM_PASSIVE", position: [0.725, 0.2], size: 1.05, speed: 1, opacity: 1, image: 1 },
+      ],
+      libraries: [
+        { type: "LIBRARY_PASSIVE", position: [1.725, 0], size: 0.5, speed: 1, opacity: 1, image: 1 },
       ]
     }
   }
@@ -78,10 +82,14 @@ export default class Middleground extends React.Component {
       const flowers = this.state.flowers.map((item, index) => {
         return <Flower key={"flower-" + index} item={item} parent={parent} />;
       });
+      const libraries = this.state.libraries.map((item, index) => {
+        return <Library key={"library-" + index} item={item} parent={parent} />;
+      });
       return <div>
         { seesaws }
         { junglegyms }
         { flowers }
+        { libraries }
       </div>;
     }
     return null;

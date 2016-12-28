@@ -10,6 +10,7 @@ const defaultState = Immutable({
   minSize: [1280, 800],
   percentage: 0,
   navPoses: [0, 0, 0, 0],
+  openLibrary: false,
 });
 
 export default function reducer(state = defaultState, action) {
@@ -19,6 +20,9 @@ export default function reducer(state = defaultState, action) {
     }
     case "SET_WINDOW_SIZE": {
       return state.merge({size: action.payload});
+    }
+    case "SET_OPEN_LIBRARY": {
+      return state.merge({openLibrary: action.payload});
     }
     case "SET_SCROLL_X_PERCENTAGE": {
       let route;

@@ -32,7 +32,7 @@ export default class Library extends React.Component {
     const { parent, window, canvas, item } = nextProps;
     // Hit detection with the player.
     let scale = Math.min(window.size[0] / window.minSize[0], 1);
-    if ((this.object.position.x - this.base.texture.width * 0.5 * scale < canvas.player.x + canvas.player.texture.width * 0.4) && (this.object.position.x * scale > canvas.player.x - canvas.player.texture.width * 0.4) ) {
+    if ((this.object.position.x - this.base.texture.width * scale < canvas.player.x + canvas.player.texture.width * 0.4) && (this.object.position.x * scale > canvas.player.x - canvas.player.texture.width * 0.4) ) {
       if (!this.state.active) {
         this.setState({
           active: true,

@@ -57,6 +57,7 @@ export default class App extends React.Component {
       .add("assets/librarian-frame-2.png")
       .add("assets/librarian-door.png")
       .add("assets/librarian-frame.png")
+      .add("assets/panel-1.png")
       .load(this.handleAssetsLoaded.bind(this));
   }
   componentWillReceiveProps(nextProps) {

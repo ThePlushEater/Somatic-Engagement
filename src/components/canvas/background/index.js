@@ -61,8 +61,8 @@ export default class Background extends React.Component {
         { type: "MOUNTAIN_STATIC", position: [0.475, 0], size: 1, speed: 0.8, opacity: 1, image: 1 },
         { type: "MOUNTAIN_STATIC", position: [1, 0], size: 1, speed: 0.8, opacity: 1, image: 2 },
         { type: "MOUNTAIN_STATIC", position: [0.775, 0], size: 1, speed: 0.8, opacity: 1, image: 3 },
-        { type: "MOUNTAIN_STATIC", position: [0.25, 0.15], size: 0.5, speed: 0.8, opacity: 1, image: 4 },
-        { type: "MOUNTAIN_STATIC", position: [0.9, 0.2], size: 0.4, speed: 0.8, opacity: 1, image: 4 },
+        { type: "MOUNTAIN_STATIC", position: [0.285, 0.15], size: 0.4, speed: 0.8, opacity: 1, image: 4 },
+        { type: "MOUNTAIN_STATIC", position: [0.9, 0.2], size: 0.35, speed: 0.8, opacity: 1, image: 4 },
       ],
       trees: [
         { type: "TREE_STATIC", position: [0.05, 0], size: 0.25, speed: 0.85, opacity: 1, image: 0 },

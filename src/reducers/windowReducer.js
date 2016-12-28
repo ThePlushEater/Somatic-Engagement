@@ -23,7 +23,11 @@ export default function reducer(state = defaultState, action) {
       return state.merge({size: action.payload});
     }
     case "SET_OPEN_LIBRARY": {
-      return state.merge({openLibrary: action.payload});
+      if (action.payload) {
+        return state.merge({openLibrary: action.payload});
+      } else {
+        return state.merge({openLibrary: action.payload, researchItem: null});
+      }
     }
     case "SET_RESEARCH_ITEM": {
       return state.merge({researchItem: action.payload});

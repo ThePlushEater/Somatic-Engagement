@@ -176,7 +176,7 @@
         font-family: $font-bold;
         font-size: $font-xx-large;
         line-height: 1.15;
-        padding: 36px 4% 8px 8%;
+        padding: 36px 4% 8px 10%;
         width: 100%;
         position: relative;
         @include respond-to(portrait) {
@@ -194,7 +194,7 @@
       > .bottom {
         -webkit-flex-grow: 1;
                 flex-grow: 1;
-        padding: 8px 4% 28% 8%;
+        padding: 8px 4% 28% 10%;
         width: 100%;
         height: 50%;
         position: relative;

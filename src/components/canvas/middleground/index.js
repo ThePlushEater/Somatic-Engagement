@@ -8,6 +8,7 @@ import Flower from "./../foreground/flower";
 import Seesaw from "./seesaw";
 import Junglegym from "./Junglegym";
 import Library from "./library";
+import Panel from "./panel";
 
 
 export default class Middleground extends React.Component {
@@ -35,13 +36,16 @@ export default class Middleground extends React.Component {
         { type: "FLOWER_PASSIVE", position: [1.11, 0.328], size: 0.85, speed: 1, opacity: 1, image: 1 },
       ],
       seesaws: [
-        { type: "SEESAW_PASSIVE", position: [0.435, 0.05], size: 1.05, speed: 1, opacity: 1, image: 1 },
+        { type: "SEESAW_PASSIVE", position: [0.435, 0.05], size: 1.05, speed: 1, opacity: 1, image: 0 },
       ],
       junglegyms: [
-        { type: "JUNGLEGYM_PASSIVE", position: [0.725, 0.2], size: 1.05, speed: 1, opacity: 1, image: 1 },
+        { type: "JUNGLEGYM_PASSIVE", position: [0.725, 0.2], size: 1.05, speed: 1, opacity: 1, image: 0 },
       ],
       libraries: [
-        { type: "LIBRARY_PASSIVE", position: [1.725, 0], size: 0.5, speed: 1, opacity: 1, image: 1 },
+        { type: "LIBRARY_PASSIVE", position: [1.725, 0], size: 0.5, speed: 1, opacity: 1, image: 0 },
+      ],
+      panels: [
+        { type: "PANEL_STATIC", position: [0.115, 0], size: 0.475, speed: 1, opacity: 1, image: 0 },
       ]
     }
   }
@@ -85,11 +89,15 @@ export default class Middleground extends React.Component {
       const libraries = this.state.libraries.map((item, index) => {
         return <Library key={"library-" + index} item={item} parent={parent} />;
       });
+      const panels = this.state.panels.map((item, index) => {
+        return <Panel key={"panel-" + index} item={item} parent={parent} />;
+      });
       return <div>
         { seesaws }
         { junglegyms }
         { flowers }
         { libraries }
+        { panels }
       </div>;
     }
     return null;

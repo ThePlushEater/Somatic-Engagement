@@ -1,0 +1,181 @@
+@import "./../../scss/variables.scss";
+@import "./../../scss/mixin.scss";
+
+.content {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-direction: row;
+          flex-direction: row;
+
+
+  > .page {
+    width: 25%;
+    height: 100%;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex-direction: row;
+            flex-direction: row;
+
+    @include respond-to(portrait) {
+      display: block;
+      height: 85%;
+      overflow-y: scroll;
+    }
+  }
+
+  > .page-1 {
+    > .left {
+      user-select: none;
+      padding: 36px 4%;
+      width: 50%;
+      @include respond-to(portrait) {
+        padding: 24px 16px;
+        width: 100%;
+      }
+      > .title {
+        pointer-events: none;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+
+        width: 160px;
+        margin: auto;
+        cursor: pointer;
+        margin: auto 0;
+
+        > span {
+          font-family: $font-bold;
+          color: #606060;
+          font-weight: 700;
+          font-size: $font-xxx-large;
+          @include respond-to(portrait) {
+            font-size: $font-xx-large;
+          }
+          letter-spacing: 4px;
+          margin: auto 2px;
+          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+        }
+
+        > .logo {
+          margin: auto;
+          width: 120px;
+          height: 120px;
+          @include respond-to(portrait) {
+            width: 60px;
+            height: 60px;
+          }
+
+          transform-origin: 50% 50%;
+          transform: rotate(0deg);
+          animation-name: spin;
+          animation-duration: 12s;
+          animation-iteration-count: infinite;
+          animation-timing-function: ease-in-out;
+          animation-direction: alternate;
+        }
+      }
+
+      > .sitename {
+        padding: 16px 0 8px 0;
+        color: #606060;
+        font-family: $font-bold;
+        font-size: $font-xx-large;
+        line-height: 1.15;
+        @include respond-to(portrait) {
+          font-size: $font-x-large;
+        }
+      }
+
+      > .description {
+        padding: 8px 0 8px 0;
+        color: #606060;
+        font-family: $font-bold;
+        font-size: $font-large;
+        line-height: 1.15;
+        @include respond-to(portrait) {
+          font-size: $font-medium;
+        }
+      }
+    }
+
+    > .right {
+      width: 50%;
+      position: relative;
+      @include respond-to(portrait) {
+        width: 100%;
+      }
+
+      > .container {
+        position: absolute;
+        top: 48px;
+        right: 8%;
+        width: 90%;
+        height: 50%;
+        overflow-y: scroll;
+        padding: 0 8px;
+        @include respond-to(portrait) {
+          position: relative;
+          width: 100%;
+          height: auto;
+          top: 0;
+          right: 0;
+          padding: 0 12px;
+        }
+      }
+    }
+  }
+  > .page-2 {
+    a {
+      color: #963200;
+    }
+    -webkit-flex-direction: column;
+            flex-direction: column;
+    > .top {
+      color: #606060;
+      font-family: $font-bold;
+      font-size: $font-xx-large;
+      line-height: 1.15;
+      padding: 36px 4% 8px 4%;
+      width: 50%;
+      position: relative;
+      @include respond-to(portrait) {
+        padding: 24px 16px 8px 16px;
+        width: 100%;
+        font-size: $font-x-large;
+      }
+    }
+    > .bottom {
+      -webkit-flex-grow: 1;
+              flex-grow: 1;
+      padding: 8px 4% 16% 4%;
+      width: 50%;
+      height: 50%;
+      position: relative;
+      @include respond-to(portrait) {
+        padding: 8px 12px;
+        width: 100%;
+        height: auto;
+      }
+      > .container {
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        padding: 0 8px;
+        @include respond-to(portrait) {
+          height: auto;
+        }
+      }
+    }
+  }
+}

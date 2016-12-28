@@ -1,0 +1,41 @@
+@import "./../../scss/variables.scss";
+
+.frame {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  > .left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 100%;
+    background-color: #f2f2f2;
+  }
+
+  > .right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 24px;
+    height: 100%;
+    background-color: #f2f2f2;
+  }
+  > .footer {
+    position: fixed;
+    bottom: 4px;
+    right: 24px;
+
+    > .copyright {
+      letter-spacing: 1px;
+      margin: 2px auto;
+      font-size: $font-small;
+      color: #000000;
+      font-weight: 400;
+    }
+  }
+}

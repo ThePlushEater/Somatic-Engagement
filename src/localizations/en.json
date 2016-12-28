@@ -1,0 +1,7 @@
+{
+  "sitename": "NodeW",
+  "startbutton": "START",
+  "savebutton": "SAVE",
+  "runbutton": "RUN",
+  "homepagecontent": "<h1>Wecome to NodeW!</h1><p>NodeW is the JavaScript-based application to create an interactive web page with a node structure.</p>"
+}

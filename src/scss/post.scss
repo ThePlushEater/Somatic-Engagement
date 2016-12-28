@@ -1,0 +1,44 @@
+.alignleft {
+  float: left;
+  margin: 0.375em 1.75em 1.75em 0;
+}
+p {
+  line-height: 1.75;
+  margin: 0 4px 1.75em 4px;
+}
+
+embed, iframe, object, video {
+  margin-bottom: 1.75em;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+p > embed, p > iframe, p > object, p > video {
+  margin-bottom: 0;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+a {
+  target-name: new;
+  target-new: tab;
+}
+
+.post {
+  font-family: $font-bold;
+  line-height: 1.75;
+  font-size: 1.15em;
+
+  ul {
+    padding-left: 10px;
+  }
+}
+
+h1, h2, h3 {
+  margin: 0 4px 0.5em 4px;
+  line-height: 1.25;
+}

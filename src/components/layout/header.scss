@@ -1,0 +1,128 @@
+@import "./../../scss/variables.scss";
+@import "./../../scss/mixin.scss";
+
+.header {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 17%;
+  @include respond-to(portrait) {
+    height: 10%;
+  }
+  background-color: #7d6356;
+  color: #fefefe;
+  border: 24px solid #f2f2f2;
+  border-top: none;
+  user-select: none;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-direction: row;
+          flex-direction: row;
+
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+
+  > .title {
+    height: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    width: 160px;
+    margin: auto;
+    color: #fefefe;
+    font-weight: 700;
+    font-size: $font-xx-large;
+    cursor: pointer;
+    margin: auto 24px auto 36px;
+    letter-spacing: 4px;
+
+    @include respond-to(portrait) {
+      width: 40px;
+      margin: auto 4px;
+    }
+
+    > span {
+      font-family: $font-bold;
+      margin: auto;
+
+      @include respond-to(portrait) {
+        display: none;
+      }
+    }
+
+    > .logo {
+      margin: auto;
+      width: 60px;
+      height: auto;
+
+      @include respond-to(portrait) {
+        width: 28px;
+      }
+
+      transform-origin: 50% 50%;
+      transform: rotate(0deg);
+      animation-name: spin;
+      animation-duration: 12s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+      animation-direction: alternate;
+
+      &.off {
+        -webkit-filter: brightness(0) invert(1);
+                filter: brightness(0) invert(1);
+      }
+    }
+  }
+
+  > .nav-group {
+    -webkit-flex-grow: 1;
+            flex-grow: 1;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex-direction: row;
+            flex-direction: row;
+
+    -webkit-justify-content: space-around;
+            justify-content: space-around;
+
+    margin: auto;
+    list-style-type: none;
+
+    > .item {
+      font-family: $font-bold;
+      font-size: $font-medium-small;
+      letter-spacing: 1px;
+      color: #fefefe;
+      font-weight: 700;
+      padding: 12px 16px;
+      cursor: pointer;
+      @include respond-to(portrait) {
+        font-size: $font-x-small;
+        padding: 12px 8px;
+      }
+
+      -webkit-transition-duration: 0.1s;
+         -moz-transition-duration: 0.1s;
+              transition-duration: 0.1s;
+
+      &:hover, &.active {
+        background-color: #8D6F54;
+      }
+    }
+  }
+}

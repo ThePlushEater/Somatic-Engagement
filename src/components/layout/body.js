@@ -48,15 +48,15 @@ export default class Body extends React.Component {
     event.preventDefault();
   }
   handleKeyUp(event){
-    if(event.keyCode === KEY.LEFT   || event.keyCode === KEY.A) {
-      this.setState({
-        direction: "CENTER",
-      });
-    } else if(event.keyCode === KEY.RIGHT  || event.keyCode === KEY.D) {
-      this.setState({
-        direction: "CENTER",
-      });
-    }
+    // if(event.keyCode === KEY.LEFT   || event.keyCode === KEY.A) {
+    //   this.setState({
+    //     direction: "CENTER",
+    //   });
+    // } else if(event.keyCode === KEY.RIGHT  || event.keyCode === KEY.D) {
+    //   this.setState({
+    //     direction: "CENTER",
+    //   });
+    // }
     this.setState({
       direction: "CENTER",
     });

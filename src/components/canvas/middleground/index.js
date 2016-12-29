@@ -9,6 +9,7 @@ import Seesaw from "./seesaw";
 import Junglegym from "./Junglegym";
 import Library from "./library";
 import Panel from "./panel";
+import Kite from "./kite";
 
 
 export default class Middleground extends React.Component {
@@ -34,6 +35,14 @@ export default class Middleground extends React.Component {
         { type: "FLOWER_PASSIVE", position: [1.025, 0.48], size: 0.8, speed: 1, opacity: 1, image: 1 },
         { type: "FLOWER_PASSIVE", position: [1.045, 0.58], size: 0.9, speed: 1, opacity: 1, image: 0 },
         { type: "FLOWER_PASSIVE", position: [1.11, 0.328], size: 0.85, speed: 1, opacity: 1, image: 1 },
+
+        { type: "FLOWER_PASSIVE", position: [3.59, 0.395], size: 0.875, speed: 1, opacity: 1, image: 0 },
+        { type: "FLOWER_PASSIVE", position: [3.625, 0.512], size: 0.9, speed: 1, opacity: 1, image: 1 },
+        { type: "FLOWER_PASSIVE", position: [3.685, 0.58], size: 0.9, speed: 1, opacity: 1, image: 0 },
+        { type: "FLOWER_PASSIVE", position: [3.825, 0.458], size: 0.9, speed: 1, opacity: 1, image: 1 },
+        { type: "FLOWER_PASSIVE", position: [3.865, 0.68], size: 0.9, speed: 1, opacity: 1, image: 0 },
+        { type: "FLOWER_PASSIVE", position: [3.925, 0.38], size: 0.875, speed: 1, opacity: 1, image: 0 },
+        { type: "FLOWER_PASSIVE", position: [3.95, 0.238], size: 0.8, speed: 1, opacity: 1, image: 1 },
       ],
       seesaws: [
         { type: "SEESAW_PASSIVE", position: [0.435, 0.05], size: 1, speed: 1, opacity: 1, image: 0 },
@@ -46,6 +55,9 @@ export default class Middleground extends React.Component {
       ],
       panels: [
         { type: "PANEL_STATIC", position: [0.115, 0], size: 0.475, speed: 1, opacity: 1, image: 0 },
+      ],
+      kites: [
+        { type: "KITE_PASSIVE", position: [3.735, 0.135], size: 0.9, speed: 1, opacity: 1, image: 0 },
       ]
     }
   }
@@ -92,12 +104,16 @@ export default class Middleground extends React.Component {
       const panels = this.state.panels.map((item, index) => {
         return <Panel key={"panel-" + index} item={item} parent={parent} />;
       });
+      const kites = this.state.kites.map((item, index) => {
+        return <Kite key={"kite-" + index} item={item} parent={parent} />;
+      });
       return <div>
         { seesaws }
         { junglegyms }
         { flowers }
         { libraries }
         { panels }
+        { kites }
       </div>;
     }
     return null;

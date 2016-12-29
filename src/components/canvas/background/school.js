@@ -15,14 +15,11 @@ import { linear } from "./../../../utils/math";
     canvas: store.canvas,
   }
 })
-export default class Road extends React.Component {
+export default class School extends React.Component {
   constructor() {
     super();
     this.state = {
-      width: 36,
-      height: 5,
-      space: 24,
-      bottom: 42,
+
     }
   }
   componentWillMount() {
@@ -50,19 +47,25 @@ export default class Road extends React.Component {
     }
   }
   render() {
-    const { parent, window, canvas } = this.props;
+    const { parent, window, canvas, item } = this.props;
     if (parent) {
-      if (this.object) {
-        parent.removeChild(this.object);
-      }
       let scale = Math.min(window.size[0] / window.minSize[0], 1);
-      this.object = new PIXI.Graphics();
-      this.object.beginFill(0xFFFFFF);
-      for (let i=0; i * (this.state.width + this.state.space) < canvas.size[1] * 5.5; i++) {
-        this.object.drawRect(canvas.size[0] * 0.9 - 3 * window.percentage * canvas.size[0] + i * (this.state.width + this.state.space) * scale, canvas.size[1] - this.state.bottom * scale, this.state.width * scale, this.state.height * scale);
+      if (!this.object) {
+        let frame;
+        switch(item.image) {
+          case 0: { frame = "assets/school-1.png"; break; }
+        }
+
+        this.object = new PIXI.Sprite(PIXI.loader.resources[frame].texture);
+        this.object.anchor.set(0.9, 1);
+        this.object.position.set(-3 * window.percentage * item.speed * canvas.size[0] + item.position[0] * canvas.size[0], canvas.size[1] - 64 * scale - item.position[1] * canvas.size[1]);
+        this.object.scale.set(scale * item.size, scale * item.size);
+        this.object.alpha = item.opacity;
+        parent.addChild(this.object);
+      } else {
+        this.object.position.set(-3 * window.percentage * item.speed * canvas.size[0] + item.position[0] * canvas.size[0], canvas.size[1] - 64 * scale - item.position[1] * canvas.size[1]);
+        this.object.scale.set(scale * item.size, scale * item.size);
       }
-      this.object.endFill();
-      parent.addChild(this.object);
     }
     return null;
   }

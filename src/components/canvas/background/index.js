@@ -10,6 +10,7 @@ import Tree from './tree';
 import Skyline from './skyline';
 import Theater from './theater';
 import Star from './star';
+import School from './school';
 
 
 export default class Background extends React.Component {
@@ -113,6 +114,13 @@ export default class Background extends React.Component {
         // { type: "TREE_STATIC", position: [2.05, 0], size: 0.325, speed: 0.85, opacity: 1, image: 0 },
         // { type: "TREE_STATIC", position: [2.115, 0], size: 0.275, speed: 0.85, opacity: 1, image: 0 },
         // { type: "TREE_STATIC", position: [2.145, 0], size: 0.21, speed: 0.85, opacity: 1, image: 0 },
+
+        { type: "TREE_STATIC", position: [3.325, 0], size: 0.15, speed: 0.95, opacity: 1, image: 0 },
+        { type: "TREE_STATIC", position: [3.455, 0], size: 0.325, speed: 0.95, opacity: 1, image: 0 },
+        { type: "TREE_STATIC", position: [3.525, 0], size: 0.275, speed: 0.95, opacity: 1, image: 0 },
+        { type: "TREE_STATIC", position: [3.675, 0], size: 0.275, speed: 0.95, opacity: 1, image: 0 },
+        { type: "TREE_STATIC", position: [3.2, 0], size: 0.125, speed: 0.95, opacity: 1, image: 0 },
+        { type: "TREE_STATIC", position: [3.25, 0], size: 0.3, speed: 0.95, opacity: 1, image: 0 },
       ],
       skylines: [
         { type: "SKYLINE_STATIC", position: [1.5, 0], size: 0.3, speed: 0.95, opacity: 1, image: 0 },
@@ -125,6 +133,9 @@ export default class Background extends React.Component {
       theaters: [
         { type: "THEATER_STATIC", position: [2.55, 0], size: 0.85, speed: 1, opacity: 1, image: 0 },
         { type: "THEATER_STATIC", position: [2.77, 0], size: 0.85, speed: 1, opacity: 1, image: 1 },
+      ],
+      schools: [
+        { type: "SCHOOL_STATIC", position: [4, 0], size: 0.915, speed: 1, opacity: 1, image: 0 },
       ]
     }
   }
@@ -168,6 +179,9 @@ export default class Background extends React.Component {
       const theaters = this.state.theaters.map((item, index) => {
         return <Theater key={"theater-" + index} item={item} parent={parent} />;
       });
+      const schools = this.state.schools.map((item, index) => {
+        return <School key={"school-" + index} item={item} parent={parent} />;
+      });
       const trees = this.state.trees.map((item, index) => {
         return <Tree key={"tree-" + index} item={item} parent={parent} />;
       });
@@ -180,6 +194,7 @@ export default class Background extends React.Component {
         { stars }
         { skylines }
         { theaters }
+        { schools }
         { trees }
       </div>;
     }

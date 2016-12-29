@@ -60,6 +60,11 @@ export default class App extends React.Component {
       .add("assets/skyline-1.png")
       .add("assets/theater-leg.png")
       .add("assets/star-1.png")
+      .add("assets/school-1.png")
+      .add("assets/kite-frame-1.png")
+      .add("assets/kite-frame-2.png")
+      .add("assets/kite-frame-3.png")
+      .add("assets/kite-frame-4.png")
       .load(this.handleAssetsLoaded.bind(this));
   }
   componentWillReceiveProps(nextProps) {

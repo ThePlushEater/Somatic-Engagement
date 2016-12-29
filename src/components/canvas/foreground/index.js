@@ -35,6 +35,13 @@ export default class Foreground extends React.Component {
         { type: "FLOWER_PASSIVE", position: [1, 0.875], size: 1, speed: 1, opacity: 1, image: 1 },
         { type: "FLOWER_PASSIVE", position: [1.075, 0.85], size: 1, speed: 1, opacity: 1, image: 0 },
         { type: "FLOWER_PASSIVE", position: [1.175, 0.825], size: 1, speed: 1, opacity: 1, image: 0 },
+
+
+        { type: "FLOWER_PASSIVE", position: [3.675, 0.825], size: 1, speed: 1, opacity: 1, image: 1 },
+        { type: "FLOWER_PASSIVE", position: [3.725, 0.775], size: 1, speed: 1, opacity: 1, image: 0 },
+        { type: "FLOWER_PASSIVE", position: [3.9, 0.85], size: 1, speed: 1, opacity: 1, image: 0 },
+        { type: "FLOWER_PASSIVE", position: [3.925, 0.825], size: 1, speed: 1, opacity: 1, image: 1 },
+        { type: "FLOWER_PASSIVE", position: [3.975, 0.9], size: 1, speed: 1, opacity: 1, image: 0 },
       ],
       trees: [
         { type: "TREE_STATIC", position: [1.135, 0.015], size: 0.374, speed: 1, opacity: 1, image: 0 },

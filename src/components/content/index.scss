@@ -28,7 +28,7 @@
 
     @include respond-to(portrait) {
       display: block;
-      height: 85%;
+      height: 82%;
       overflow-y: scroll;
     }
   }
@@ -144,6 +144,9 @@
   > .page-2 {
     a {
       color: #963200;
+    }
+    @include respond-to(portrait) {
+      height: 80%;
     }
     position: relative;
     > .button-library {
@@ -377,6 +380,8 @@
       }
 
       > .bottom {
+        flex-shrink: 0;
+        -webkit-flex-shrink: 0;
         padding-top: 8px;
         text-align: right;
         > .button {
@@ -400,6 +405,9 @@
     -webkit-justify-content: flex-end; /* Safari 6.1+ */
             justify-content: flex-end;
 
+    @include respond-to(portrait) {
+      display: block;
+    }
     > .left {
       user-select: none;
       width: 42.5%;

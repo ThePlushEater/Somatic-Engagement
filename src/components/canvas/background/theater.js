@@ -63,11 +63,10 @@ export default class Theater extends React.Component {
         this.object.position.set(-3 * window.percentage * item.speed * canvas.size[0] + item.position[0] * canvas.size[0], canvas.size[1] - 64 * scale - item.position[1] * canvas.size[1]);
         this.object.scale.set(item.size, item.size);
 
-        this.object.alpha = 1;
-        if (window.size[0] < window.minSize[0]) {
-          if (item.image == 1) {
-            this.object.alpha = 0;
-          }
+        if (window.size[0] < 1024 && item.image == 1) {
+          this.object.alpha = 0;
+        } else {
+          this.object.alpha = 1;
         }
       }
     }

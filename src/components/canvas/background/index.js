@@ -8,6 +8,7 @@ import Cloud from './cloud';
 import Mountain from './mountain';
 import Tree from './tree';
 import Skyline from './skyline';
+import Theater from './theater';
 
 
 export default class Background extends React.Component {
@@ -91,8 +92,8 @@ export default class Background extends React.Component {
         { type: "TREE_STATIC", position: [1.6, 0], size: 0.45, speed: 0.85, opacity: 1, image: 0 },
         { type: "TREE_STATIC", position: [1.69, 0], size: 0.36, speed: 0.85, opacity: 1, image: 0 },
         { type: "TREE_STATIC", position: [1.745, 0], size: 0.4625, speed: 0.85, opacity: 1, image: 0 },
-        { type: "TREE_STATIC", position: [1.835, 0], size: 0.2625, speed: 0.85, opacity: 1, image: 0 },
-        { type: "TREE_STATIC", position: [1.9, 0], size: 0.165, speed: 0.85, opacity: 1, image: 0 },
+        { type: "TREE_STATIC", position: [1.8, 0], size: 0.2625, speed: 0.85, opacity: 1, image: 0 },
+        { type: "TREE_STATIC", position: [2.025, 0], size: 0.165, speed: 0.85, opacity: 1, image: 0 },
         // { type: "TREE_STATIC", position: [2.05, 0], size: 0.325, speed: 0.85, opacity: 1, image: 0 },
         // { type: "TREE_STATIC", position: [2.115, 0], size: 0.275, speed: 0.85, opacity: 1, image: 0 },
         // { type: "TREE_STATIC", position: [2.145, 0], size: 0.21, speed: 0.85, opacity: 1, image: 0 },
@@ -105,6 +106,10 @@ export default class Background extends React.Component {
         { type: "SKYLINE_STATIC", position: [2.56, 0], size: 0.3, speed: 0.85, opacity: 1, image: 0 },
         { type: "SKYLINE_STATIC", position: [2.75, 0], size: 0.2, speed: 0.85, opacity: 1, image: 0 },
       ],
+      theaters: [
+        { type: "THEATER_STATIC", position: [2.55, 0], size: 0.85, speed: 1, opacity: 1, image: 0 },
+        { type: "THEATER_STATIC", position: [2.77, 0], size: 0.85, speed: 1, opacity: 1, image: 1 },
+      ]
     }
   }
   componentWillMount() {
@@ -144,6 +149,9 @@ export default class Background extends React.Component {
       const skylines = this.state.skylines.map((item, index) => {
         return <Skyline key={"tree-" + index} item={item} parent={parent} />;
       });
+      const theaters = this.state.theaters.map((item, index) => {
+        return <Theater key={"tree-" + index} item={item} parent={parent} />;
+      });
       const trees = this.state.trees.map((item, index) => {
         return <Tree key={"tree-" + index} item={item} parent={parent} />;
       });
@@ -151,6 +159,7 @@ export default class Background extends React.Component {
         { clouds }
         { mountains }
         { skylines }
+        { theaters }
         { trees }
       </div>;
     }

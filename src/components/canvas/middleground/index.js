@@ -42,7 +42,7 @@ export default class Middleground extends React.Component {
         { type: "JUNGLEGYM_PASSIVE", position: [0.725, 0.2], size: 1, speed: 1, opacity: 1, image: 0 },
       ],
       libraries: [
-        { type: "LIBRARY_PASSIVE", position: [1.75, 0], size: 0.65, speed: 1, opacity: 1, image: 0 },
+        { type: "LIBRARY_PASSIVE", position: [1.715, 0], size: 0.7, speed: 1, opacity: 1, image: 0 },
       ],
       panels: [
         { type: "PANEL_STATIC", position: [0.115, 0], size: 0.475, speed: 1, opacity: 1, image: 0 },

@@ -19,7 +19,9 @@ export default class Content extends React.Component {
   constructor() {
     super();
     this.state = {
-
+      theaterDriveinSize: 0,
+      theaterDriveinBottomOffset: 0,
+      theaterDriveinTextSize: 0,
     };
   }
   componentWillMount() {
@@ -32,6 +34,14 @@ export default class Content extends React.Component {
     setTimeout(function() {
       convertLinksOpenInNewWindow(ReactDom.findDOMNode(this.refs['content']));
     }.bind(this), 100);
+
+    const { window } = nextProps;
+    let scale = Math.min(window.size[0] / window.minSize[0], 1);
+    this.setState({
+      theaterDriveinSize: 320 * scale,
+      theaterDriveinBottomOffset: 64 * scale,
+      theaterDriveinTextSize: 320 * scale * 0.06,
+    })
   }
   handleToggleLibrary(value, event) {
     if (this.props.window.size[0] < 1024) {
@@ -61,9 +71,14 @@ export default class Content extends React.Component {
     const page2 = ReactDom.findDOMNode(this.refs['page-2']);
     page2.scrollTop = 0;
   }
+  handleClickProjectItem(item, event) {
+    this.props.dispatch({type: "SET_PROJECT_ITEM", payload: item});
+    const page3 = ReactDom.findDOMNode(this.refs['page-3']);
+    page3.scrollTop = 0;
+  }
   render() {
     const { localization } = this.props.localization;
-    const { posts } = this.props.post;
+    const { posts, project } = this.props.post;
     const { window } = this.props;
 
     const about = posts.map((item, index) => {
@@ -85,6 +100,22 @@ export default class Content extends React.Component {
         return <li className="post" key={"research-" + index}>
           <div dangerouslySetInnerHTML={{__html: item.title.rendered}} onClick={this.handleClickResearchItem.bind(this, item)}/>
         </li>;
+      }
+      return null;
+    });
+
+    let projectSize = 0;
+
+    let projects = posts.map((item, index) => {
+      if (item.categories.indexOf(serverConfig.iProject) > -1 && projectSize < 3) {
+        projectSize++;
+        let active = "";
+        if (project && item.id == project.id) {
+          active = " active"
+        }
+        return <div className={"item" + active} key={"project-" + index} onClick={this.handleClickProjectItem.bind(this, item)}>
+          <div dangerouslySetInnerHTML={{__html: item.title.rendered}} />
+        </div>;
       }
       return null;
     });
@@ -136,6 +167,14 @@ export default class Content extends React.Component {
       </div>;
     }
 
+    let page3Right;
+    if (project) {
+      page3Right = <div className="container">
+      <div className="title" dangerouslySetInnerHTML={{__html: project.title.rendered}} />
+        <div className="text" dangerouslySetInnerHTML={{__html: project.content.rendered}} />
+      </div>
+    }
+
 
     return(
       <div ref="content" className="content">
@@ -171,8 +210,39 @@ export default class Content extends React.Component {
           { page2Right }
         </div>
         <div className="page page-3">
+          <div className="right">
+            <div style={{
+              bottom: this.state.theaterDriveinBottomOffset,
+            }} className="wrapper">
+              <img className="top" src="./theater-top.png" />
+              <div ref="page-3" className="middle">
+                { page3Right }
+              </div>
+              <img className="bottom" src="./theater-bottom.png" />
+              <div className="leg">
+              </div>
+            </div>
+          </div>
+          <div className="left">
+            <div style={{
+              width: this.state.theaterDriveinSize,
+              height: this.state.theaterDriveinSize,
+              bottom: this.state.theaterDriveinBottomOffset * 0.15,
+            }} className="wrapper">
+              <img className="panel" src="./theater-drivein-panel.png">
+              </img>
+              <div style={{
+                fontSize: this.state.theaterDriveinTextSize,
+              }} className="list">
+                { projects }
+              </div>
+              <img className="front" src="./theater-drivein-front.png" />
+            </div>
+
+          </div>
         </div>
         <div className="page page-4">
+
         </div>
 
       </div>

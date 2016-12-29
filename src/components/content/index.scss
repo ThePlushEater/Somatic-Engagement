@@ -2,6 +2,7 @@
 @import "./../../scss/mixin.scss";
 
 .content {
+  overflow: hidden;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -276,7 +277,7 @@
         text-align: center;
         color: #606060;
         font-family: $font-bold;
-        font-size: $font-xx-large;
+        font-size: $font-x-large;
         line-height: 1.15;
         padding: 24px 4% 16px 4%;
         width: 100%;
@@ -328,6 +329,7 @@
             margin-left: 8px;
           }
           &.text {
+            font-family: $font-normal;
             padding: 8px;
             margin: 0;
             @include respond-to(portrait) {
@@ -384,6 +386,144 @@
           color: #000000;
           padding: 8px 12px;
           cursor: pointer;
+        }
+      }
+    }
+  }
+
+  > .page-3 {
+    overflow-y: hidden;
+    height: 100%;
+    -webkit-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+
+    -webkit-justify-content: flex-end; /* Safari 6.1+ */
+            justify-content: flex-end;
+
+    > .left {
+      user-select: none;
+      width: 42.5%;
+      padding-left: 10%;
+
+      @include respond-to(portrait) {
+        width: 0;
+      }
+
+      > .wrapper {
+        position: absolute;
+
+        > .front {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: auto;
+          pointer-events: none;
+        }
+
+        > .panel {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: auto;
+        }
+
+        > .list {
+          width: 68%;
+          position: absolute;
+          top: 61%;
+          padding-left: 5%;
+
+          > .item {
+            user-select: none;
+            cursor: pointer;
+            line-height: 1.55;
+            font-family: $font-bold;
+            color: #000000;
+            padding-left: 4%;
+            overflow: hidden;
+
+            &:hover, &.active {
+              background-color: #4a271c;
+              color: #ffffff;
+            }
+          }
+        }
+      }
+    }
+
+    > .right {
+      overflow: hidden;
+      position: relative;
+      width: 50%;
+      height: 100%;
+      @include respond-to(portrait) {
+        margin-left: 24px;
+        width: calc(100% - 48px);
+      }
+
+      > .wrapper {
+        position: absolute;
+        width: 100%;
+        height: 77.5%;
+        @include respond-to(portrait) {
+          height: 90%;
+        }
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+
+        -webkit-flex-direction: column;
+                flex-direction: column;
+        > .top {
+          opacity: 1;
+          height: auto;
+          flex-shrink: 0;
+          -webkit-flex-shrink: 0;
+        }
+        > .middle {
+          overflow-y: scroll;
+          -webkit-flex-grow: 1;
+                  flex-grow: 1;
+
+          background-color: rgba(28, 28, 28, 1);
+          padding: 0 3%;
+          display: block;
+          > .container {
+            width: 100%;
+            display: block;
+            height: auto;
+            background-color: #fefefe;
+            padding: 8px;
+
+            > .title {
+              text-align: center;
+              font-family: $font-bold;
+              font-size: $font-x-large;
+              line-height: 1.15;
+              padding: 8px;
+            }
+            > .text {
+              font-family: $font-normal;
+            }
+          }
+        }
+        > .bottom {
+          opacity: 1;
+          height: auto;
+          flex-shrink: 0;
+          -webkit-flex-shrink: 0;
+        }
+        > .leg {
+          flex-shrink: 0;
+          -webkit-flex-shrink: 0;
+          height: 15%;
+          @include respond-to(portrait) {
+            height: 10%;
+          }
         }
       }
     }

@@ -7,7 +7,7 @@ const defaultState = Immutable({
   fetching: false,
   fetched: false,
   error: null,
-  project: 0,
+  project: null,
   posts: [],
 });
 
@@ -20,17 +20,20 @@ export default function reducer(state = defaultState, action) {
       return state.merge({fetching: false, error: action.payload});
     }
     case "FETCH_POSTS_FULFILLED" : {
-      const projects = action.payload.data.map((item) => {
+      const projects = action.payload.data.filter((item) => {
         if (item.categories.indexOf(serverConfig.iProject) > -1) {
-          return item.id;
+          return true;
         }
-        return null;
+        return false;
       });
       if (projects.length > 0) {
         return state.merge({fetching: false, fetched: true, posts: action.payload.data, project: projects[0]});
       } else {
         return state.merge({fetching: false, fetched: true, posts: action.payload.data});
       }
+    }
+    case "SET_PROJECT_ITEM": {
+      return state.merge({project: action.payload});
     }
     // case "SELECT_PROJECT_ITEM" : {
     //   const element = document.querySelector("#post-project");

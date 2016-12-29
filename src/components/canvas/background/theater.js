@@ -15,14 +15,11 @@ import { linear } from "./../../../utils/math";
     canvas: store.canvas,
   }
 })
-export default class Road extends React.Component {
+export default class Theater extends React.Component {
   constructor() {
     super();
     this.state = {
-      width: 36,
-      height: 5,
-      space: 24,
-      bottom: 42,
+
     }
   }
   componentWillMount() {
@@ -50,19 +47,29 @@ export default class Road extends React.Component {
     }
   }
   render() {
-    const { parent, window, canvas } = this.props;
+    const { parent, window, canvas, item } = this.props;
     if (parent) {
-      if (this.object) {
-        parent.removeChild(this.object);
-      }
       let scale = Math.min(window.size[0] / window.minSize[0], 1);
-      this.object = new PIXI.Graphics();
-      this.object.beginFill(0xFFFFFF);
-      for (let i=0; i * (this.state.width + this.state.space) < canvas.size[1] * 10; i++) {
-        this.object.drawRect(-3 * window.percentage * canvas.size[0] + i * (this.state.width + this.state.space) * scale, canvas.size[1] - this.state.bottom * scale, this.state.width * scale, this.state.height * scale);
+      if (!this.object) {
+        let frame = "assets/theater-leg.png";
+
+        this.object = new PIXI.Sprite(PIXI.loader.resources[frame].texture);
+        this.object.anchor.set(0.5, 1);
+        this.object.position.set(-3 * window.percentage * item.speed * canvas.size[0] + item.position[0] * canvas.size[0], canvas.size[1] - 64 * scale - item.position[1] * canvas.size[1]);
+        this.object.scale.set(item.size, item.size);
+        this.object.alpha = item.opacity;
+        parent.addChild(this.object);
+      } else {
+        this.object.position.set(-3 * window.percentage * item.speed * canvas.size[0] + item.position[0] * canvas.size[0], canvas.size[1] - 64 * scale - item.position[1] * canvas.size[1]);
+        this.object.scale.set(item.size, item.size);
+
+        this.object.alpha = 1;
+        if (window.size[0] < window.minSize[0]) {
+          if (item.image == 1) {
+            this.object.alpha = 0;
+          }
+        }
       }
-      this.object.endFill();
-      parent.addChild(this.object);
     }
     return null;
   }

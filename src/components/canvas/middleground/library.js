@@ -32,7 +32,7 @@ export default class Library extends React.Component {
     const { parent, window, canvas, item } = nextProps;
     // Hit detection with the player.
     let scale = Math.min(window.size[0] / window.minSize[0], 1);
-    if ((this.object.position.x - this.base.texture.width * scale < canvas.player.x + canvas.player.texture.width * 0.4) && (this.object.position.x * scale > canvas.player.x - canvas.player.texture.width * 0.4) ) {
+    if ((this.object.position.x - this.base.texture.width * 1 * scale < canvas.player.x + canvas.player.texture.width * 0.4) && (this.object.position.x * scale > canvas.player.x - canvas.player.texture.width * 0.4) ) {
       if (!this.state.active) {
         this.setState({
           active: true,
@@ -42,7 +42,7 @@ export default class Library extends React.Component {
         tweenInit.time = 250;
         tweenInit.easing = PIXI.tween.Easing.inOutCubic();
         tweenInit.to({
-          x: 0.75
+          x: 1.05
         });
         tweenInit.start();
         setInterval(function() {
@@ -113,14 +113,8 @@ export default class Library extends React.Component {
         this.base.alpha = item.opacity;
         this.object.addChild(this.base);
 
-        this.frame = new PIXI.Sprite(PIXI.loader.resources["assets/librarian-frame.png"].texture);
-        this.frame.anchor.set(0.5, 1);
-        this.frame.scale.set(scale * item.size, scale * item.size);
-        this.frame.alpha = item.opacity;
-        this.object.addChild(this.frame);
-
         this.actor = new PIXI.Sprite(PIXI.loader.resources["assets/librarian-frame-1.png"].texture);
-        this.actor.anchor.set(0.5, 1);
+        this.actor.anchor.set(0.55, 1);
         // this.actor.position.set(0, -canvas.size[1] * scale * 0.0325);
         this.actor.scale.set(scale * item.size, scale * item.size);
         this.actor.alpha = item.opacity;
@@ -131,21 +125,18 @@ export default class Library extends React.Component {
 
         this.object.addChild(this.actor);
 
-        this.door = new PIXI.Sprite(PIXI.loader.resources["assets/librarian-door.png"].texture);
-        this.door.anchor.set(0.5, 1);
+        this.pillar = new PIXI.Sprite(PIXI.loader.resources["assets/library-pillar-1.png"].texture);
+        this.pillar.anchor.set(0.5, 1);
         // this.actor.position.set(0, -canvas.size[1] * scale * 0.0325);
-        this.door.scale.set(scale * item.size, scale * item.size);
-        this.door.alpha = item.opacity;
-        this.object.addChild(this.door);
-
-
+        this.pillar.scale.set(scale * item.size, scale * item.size);
+        this.pillar.alpha = item.opacity;
+        this.object.addChild(this.pillar);
 
       } else {
         this.object.position.set(-3 * window.percentage * item.speed * canvas.size[0] + item.position[0] * canvas.size[0], canvas.size[1] - 64 * scale + item.position[1] * 64 * scale);
-        this.frame.scale.set(scale * item.size, scale * item.size);
         this.base.scale.set(scale * item.size, scale * item.size);
         this.actor.scale.set(scale * item.size, scale * item.size);
-        this.door.scale.set(scale * item.size, scale * item.size);
+        this.pillar.scale.set(scale * item.size, scale * item.size);
       }
     }
     return null;

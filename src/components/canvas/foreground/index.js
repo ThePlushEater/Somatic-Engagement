@@ -13,8 +13,9 @@ export default class Foreground extends React.Component {
     super();
     this.state = {
       flowers: [
-        { type: "FLOWER_PASSIVE", position: [0.1, 0.85], size: 1, speed: 1, opacity: 1, image: 0 },
-        { type: "FLOWER_PASSIVE", position: [0.15, 0.8], size: 1, speed: 1, opacity: 1, image: 1 },
+        { type: "FLOWER_PASSIVE", position: [0.075, 0.85], size: 1, speed: 1, opacity: 1, image: 0 },
+        { type: "FLOWER_PASSIVE", position: [0.105, 0.75], size: 1, speed: 1, opacity: 1, image: 1 },
+        { type: "FLOWER_PASSIVE", position: [0.135, 0.8], size: 1, speed: 1, opacity: 1, image: 0 },
         { type: "FLOWER_PASSIVE", position: [0.225, 0.9], size: 1, speed: 1, opacity: 1, image: 1 },
         { type: "FLOWER_PASSIVE", position: [0.3, 0.75], size: 1, speed: 1, opacity: 1, image: 0 },
         { type: "FLOWER_PASSIVE", position: [0.35, 0.889], size: 1, speed: 1, opacity: 1, image: 0 },

@@ -58,6 +58,8 @@ export default class Content extends React.Component {
   }
   handleClickResearchItem(item, event) {
     this.props.dispatch({type: "SET_RESEARCH_ITEM", payload: item});
+    const page2 = ReactDom.findDOMNode(this.refs['page-2']);
+    page2.scrollTop = 0;
   }
   render() {
     const { localization } = this.props.localization;

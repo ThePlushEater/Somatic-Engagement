@@ -12,7 +12,7 @@ require('./index.scss');
 
 ReactDom.render(<Provider store={store}>
   <Router history={browserHistory}>
-      <Route path="/" component={Layout}>
+      <Route path={__DIRECTORY__ + "/"} component={Layout}>
         <IndexRoute component={App} />
       </Route>
     </Router>

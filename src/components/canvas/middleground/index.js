@@ -16,8 +16,8 @@ export default class Middleground extends React.Component {
     super();
     this.state = {
       flowers: [
-        { type: "FLOWER_PASSIVE", position: [0.125, 0.5], size: 0.9, speed: 1, opacity: 1, image: 0 },
-        { type: "FLOWER_PASSIVE", position: [0.175, 0.36], size: 0.85, speed: 1, opacity: 1, image: 1 },
+        { type: "FLOWER_PASSIVE", position: [0.05, 0.5], size: 0.9, speed: 1, opacity: 1, image: 0 },
+        { type: "FLOWER_PASSIVE", position: [0.125, 0.36], size: 0.85, speed: 1, opacity: 1, image: 1 },
         { type: "FLOWER_PASSIVE", position: [0.195, 0.55], size: 0.9, speed: 1, opacity: 1, image: 1 },
         { type: "FLOWER_PASSIVE", position: [0.245, 0.375], size: 0.85, speed: 1, opacity: 1, image: 0 },
         { type: "FLOWER_PASSIVE", position: [0.475, 0.45], size: 0.9, speed: 1, opacity: 1, image: 1 },
@@ -36,13 +36,13 @@ export default class Middleground extends React.Component {
         { type: "FLOWER_PASSIVE", position: [1.11, 0.328], size: 0.85, speed: 1, opacity: 1, image: 1 },
       ],
       seesaws: [
-        { type: "SEESAW_PASSIVE", position: [0.435, 0.05], size: 1.05, speed: 1, opacity: 1, image: 0 },
+        { type: "SEESAW_PASSIVE", position: [0.435, 0.05], size: 1, speed: 1, opacity: 1, image: 0 },
       ],
       junglegyms: [
-        { type: "JUNGLEGYM_PASSIVE", position: [0.725, 0.2], size: 1.05, speed: 1, opacity: 1, image: 0 },
+        { type: "JUNGLEGYM_PASSIVE", position: [0.725, 0.2], size: 1, speed: 1, opacity: 1, image: 0 },
       ],
       libraries: [
-        { type: "LIBRARY_PASSIVE", position: [1.725, 0], size: 0.5, speed: 1, opacity: 1, image: 0 },
+        { type: "LIBRARY_PASSIVE", position: [1.75, 0], size: 0.65, speed: 1, opacity: 1, image: 0 },
       ],
       panels: [
         { type: "PANEL_STATIC", position: [0.115, 0], size: 0.475, speed: 1, opacity: 1, image: 0 },

@@ -17,13 +17,14 @@ var dargv = process.argv.filter(function(el) {
   return el.indexOf("DIRECTORY") > -1; // any position match
 });
 if (dargv.length > 0) {
-  directory = dargv[0].replace("DIRECTORY=", "");
+  directory = dargv[0].replace("DIRECTORY=", ""); // ex> /soma
 }
 
 
 
 var devDefinePlugin = new webpack.DefinePlugin({
   __DEV__: true,
+  __DIRECTORY__: JSON.stringify(directory),
 });
 
 var vendorList = [

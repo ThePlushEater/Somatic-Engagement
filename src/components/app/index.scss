@@ -4,9 +4,11 @@
 .app {
   position: relative;
   width: calc(400%);
+  height: calc(83% + 24px);
   height: calc(83vh - 24px);
   @include respond-to(portrait) {
-    height: calc(90vh - 24px);
+    height: calc(90% + 24px);
+    // height: calc(90vh - 24px);
   }
 
   > .canvas {
@@ -46,7 +48,7 @@
     display: -webkit-flex;
     display: flex;
 
-    transition-delay: 1.5s;
+    transition-delay: 2.5s;
     -webkit-transition-duration: 1.5s;
        -moz-transition-duration: 1.5s;
             transition-duration: 1.5s;

@@ -60,7 +60,7 @@ export default class Stage extends React.Component {
         this.setState({
           loaded: true,
         });
-      }.bind(this), 1000);
+      }.bind(this), 2500);
     }
   }
   shouldComponentUpdate(nextProps, nextState) {

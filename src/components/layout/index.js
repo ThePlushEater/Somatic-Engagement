@@ -24,7 +24,7 @@ export default class Layout extends React.Component {
     };
   }
   componentWillMount() {
-    this.props.dispatch(fetchLocalization());
+    // this.props.dispatch(fetchLocalization());
   }
   componentDidMount() {
     this.props.dispatch({type: "SET_ROUTER", payload: this.props.router});

@@ -7,6 +7,7 @@ import * as PIXI from 'pixi.js';
 import Cloud from './cloud';
 import Mountain from './mountain';
 import Tree from './tree';
+import Skyline from './skyline';
 
 
 export default class Background extends React.Component {
@@ -21,7 +22,8 @@ export default class Background extends React.Component {
         { type: "CLOUD_STATIC", position: [0.9, 0.35], size: 0.25, speed: 0.95, opacity: 1, image: 0 },
         { type: "CLOUD_STATIC", position: [1, 0.5], size: 0.45, speed: 1, opacity: 1, image: 0 },
 
-        { type: "CLOUD_STATIC", position: [1.65, 0.15], size: 0.35, speed: 0.9, opacity: 1, image: 0 },
+        { type: "CLOUD_STATIC", position: [1.5, 0.15], size: 0.35, speed: 0.9, opacity: 1, image: 0 },
+        { type: "CLOUD_STATIC", position: [1.8, 0.33], size: 0.25, speed: 0.9, opacity: 1, image: 0 },
         { type: "CLOUD_STATIC", position: [1.412, 0.335], size: 0.45, speed: 1, opacity: 1, image: 0 },
         { type: "CLOUD_STATIC", position: [1.235, 0.715], size: 0.25, speed: 1, opacity: 1, image: 0 },
         { type: "CLOUD_STATIC", position: [1.13, 0.5], size: 0.225, speed: 0.85, opacity: 1, image: 0 },
@@ -84,16 +86,25 @@ export default class Background extends React.Component {
         { type: "TREE_STATIC", position: [1.075, 0], size: 0.385, speed: 0.85, opacity: 1, image: 0 },
         { type: "TREE_STATIC", position: [1.17, 0], size: 0.24, speed: 0.85, opacity: 1, image: 0 },
         { type: "TREE_STATIC", position: [1.25, 0], size: 0.345, speed: 0.85, opacity: 1, image: 0 },
-        { type: "TREE_STATIC", position: [1.3, 0], size: 0.255, speed: 0.85, opacity: 1, image: 0 },
-        { type: "TREE_STATIC", position: [1.5, 0], size: 0.3525, speed: 0.85, opacity: 1, image: 0 },
-        { type: "TREE_STATIC", position: [1.55, 0], size: 0.35, speed: 0.85, opacity: 1, image: 0 },
-        { type: "TREE_STATIC", position: [1.6, 0], size: 0.26, speed: 0.85, opacity: 1, image: 0 },
-        { type: "TREE_STATIC", position: [1.8, 0], size: 0.4625, speed: 0.85, opacity: 1, image: 0 },
-        { type: "TREE_STATIC", position: [1.95, 0], size: 0.365, speed: 0.85, opacity: 1, image: 0 },
-        { type: "TREE_STATIC", position: [2.05, 0], size: 0.325, speed: 0.85, opacity: 1, image: 0 },
-        { type: "TREE_STATIC", position: [2.115, 0], size: 0.275, speed: 0.85, opacity: 1, image: 0 },
-        { type: "TREE_STATIC", position: [2.145, 0], size: 0.21, speed: 0.85, opacity: 1, image: 0 },
-      ]
+        { type: "TREE_STATIC", position: [1.295, 0], size: 0.455, speed: 0.85, opacity: 1, image: 0 },
+        { type: "TREE_STATIC", position: [1.365, 0], size: 0.3725, speed: 0.85, opacity: 1, image: 0 },
+        { type: "TREE_STATIC", position: [1.6, 0], size: 0.45, speed: 0.85, opacity: 1, image: 0 },
+        { type: "TREE_STATIC", position: [1.69, 0], size: 0.36, speed: 0.85, opacity: 1, image: 0 },
+        { type: "TREE_STATIC", position: [1.745, 0], size: 0.4625, speed: 0.85, opacity: 1, image: 0 },
+        { type: "TREE_STATIC", position: [1.835, 0], size: 0.2625, speed: 0.85, opacity: 1, image: 0 },
+        { type: "TREE_STATIC", position: [1.9, 0], size: 0.165, speed: 0.85, opacity: 1, image: 0 },
+        // { type: "TREE_STATIC", position: [2.05, 0], size: 0.325, speed: 0.85, opacity: 1, image: 0 },
+        // { type: "TREE_STATIC", position: [2.115, 0], size: 0.275, speed: 0.85, opacity: 1, image: 0 },
+        // { type: "TREE_STATIC", position: [2.145, 0], size: 0.21, speed: 0.85, opacity: 1, image: 0 },
+      ],
+      skylines: [
+        { type: "SKYLINE_STATIC", position: [1.5, 0], size: 0.3, speed: 0.95, opacity: 1, image: 0 },
+        { type: "SKYLINE_STATIC", position: [1.8, 0], size: 0.35, speed: 0.95, opacity: 1, image: 0 },
+        { type: "SKYLINE_STATIC", position: [1.9, 0], size: 0.25, speed: 0.85, opacity: 1, image: 0 },
+        { type: "SKYLINE_STATIC", position: [2.15, 0], size: 0.4, speed: 0.85, opacity: 1, image: 0 },
+        { type: "SKYLINE_STATIC", position: [2.56, 0], size: 0.3, speed: 0.85, opacity: 1, image: 0 },
+        { type: "SKYLINE_STATIC", position: [2.75, 0], size: 0.2, speed: 0.85, opacity: 1, image: 0 },
+      ],
     }
   }
   componentWillMount() {
@@ -130,12 +141,16 @@ export default class Background extends React.Component {
       const mountains = this.state.mountains.map((item, index) => {
         return <Mountain key={"mountain-" + index} item={item} parent={parent} />;
       });
+      const skylines = this.state.skylines.map((item, index) => {
+        return <Skyline key={"tree-" + index} item={item} parent={parent} />;
+      });
       const trees = this.state.trees.map((item, index) => {
         return <Tree key={"tree-" + index} item={item} parent={parent} />;
       });
       return <div>
         { clouds }
         { mountains }
+        { skylines }
         { trees }
       </div>;
     }

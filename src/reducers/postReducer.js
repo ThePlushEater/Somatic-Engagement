@@ -9,6 +9,8 @@ const defaultState = Immutable({
   error: null,
   project: null,
   posts: [],
+  comments: [],
+  commentUpdated: false,
 });
 
 export default function reducer(state = defaultState, action) {
@@ -35,13 +37,21 @@ export default function reducer(state = defaultState, action) {
     case "SET_PROJECT_ITEM": {
       return state.merge({project: action.payload});
     }
-    // case "SELECT_PROJECT_ITEM" : {
-    //   const element = document.querySelector("#post-project");
-    //   if (element) {
-    //     document.querySelector("#post-project").scrollTop = 0;
-    //   }
-    //   return state.merge({projectItem: action.payload});
+    case "FETCH_COMMENTS_FULFILLED": {
+      return state.merge({fetching: false, fetched: true, comments: action.payload.data});
+    }
+    // case "POST_COMMENT_PENDING": {
+    //   return {...state, fetching: true};
     // }
+    // case "POST_COMMENT_REJECTED": {
+    //   return {...state, fetching: false, error: action.payload};
+    // }
+    case "POST_COMMENT_FULFILLED": {
+      return state.merge({fetching: false, fetched: true, commentUpdated: true});
+    }
+    case "RESET_COMMENT_POST_STATUS": {
+      return state.merge({commentUpdated: false});
+    }
   }
   return state;
 };

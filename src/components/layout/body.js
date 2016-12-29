@@ -8,8 +8,6 @@ import { MoveHorizontal } from './../../utils/jump';
 const KEY = {
   LEFT: 37,
   RIGHT: 39,
-  A: 65,
-  D: 68,
 };
 
 require('./body.scss');
@@ -34,18 +32,19 @@ export default class Body extends React.Component {
     this.props.dispatch({type: "SET_SCROLL_X_PERCENTAGE", payload: event.target.scrollLeft / ((event.target.clientWidth - 48) * 3 - 24)});
   }
   handleKeyDown(event){
-    if(event.keyCode === KEY.LEFT   || event.keyCode === KEY.A) {
+    if(event.keyCode === KEY.LEFT) {
       this.setState({
         direction: "LEFT",
       });
       this.animator.execute(this.body.scrollLeft + this.speed, 25);
-    } else if(event.keyCode === KEY.RIGHT  || event.keyCode === KEY.D) {
+      event.preventDefault();
+    } else if(event.keyCode === KEY.RIGHT) {
       this.setState({
         direction: "RIGHT",
       });
       this.animator.execute(this.body.scrollLeft + this.speed, 25);
+      event.preventDefault();
     }
-    event.preventDefault();
   }
   handleKeyUp(event){
     // if(event.keyCode === KEY.LEFT   || event.keyCode === KEY.A) {

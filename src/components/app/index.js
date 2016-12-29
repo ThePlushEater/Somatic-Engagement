@@ -6,7 +6,7 @@ import * as PIXI from 'pixi.js';
 import Canvas from './../canvas';
 import Content from './../content';
 
-import { fetchPosts } from "./../../actions/postsActions";
+import { fetchPosts, fetchComments } from "./../../actions/postsActions";
 
 
 require('./index.scss');
@@ -32,6 +32,7 @@ export default class App extends React.Component {
   }
   componentWillMount() {
     this.props.dispatch(fetchPosts());
+    this.props.dispatch(fetchComments());
   }
   componentDidMount() {
     PIXI.loader

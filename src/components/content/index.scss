@@ -536,4 +536,162 @@
       }
     }
   }
+
+  > .page-4 {
+    width: calc(25% - 24px);
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+
+    @include respond-to(portrait) {
+      display: block;
+      overflow-y: scroll;
+    }
+    > .left {
+      width: 45%;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+
+      -webkit-flex-direction: column;
+              flex-direction: column;
+      @include respond-to(portrait) {
+        width: 100%;
+        &.hide {
+          display: block;
+          > .bottom {
+            display: none;
+          }
+        }
+      }
+
+      > .top {
+        color: #606060;
+        font-family: $font-bold;
+        font-size: $font-xx-large;
+        line-height: 1.15;
+        padding: 36px 4% 8px 10%;
+        width: 100%;
+        position: relative;
+        @include respond-to(portrait) {
+          padding: 24px 16px 8px 16px;
+          width: 100%;
+          font-size: $font-x-large;
+          padding-left: 0;
+        }
+      }
+      > .bottom {
+        padding: 8px 4% 28% 10%;
+        width: 100%;
+        height: 80%;
+        position: relative;
+        @include respond-to(portrait) {
+          padding: 8px 12px;
+          width: 100%;
+          height: auto;
+          padding-left: 0;
+        }
+        > .container {
+          width: 100%;
+          height: 100%;
+          overflow-y: scroll;
+          padding: 0 8px 0 0;
+          @include respond-to(portrait) {
+            height: auto;
+          }
+          > .comment {
+            padding: 8px;
+            margin: 8px 0;
+            border: 4px solid #ffffff;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 2px;
+            > .text {
+              > p {
+                color: #000000;
+                margin: 0;
+                line-height: 1.5;
+                font-family: $font-bold;
+              }
+            }
+            > .author {
+              color: #000000;
+              text-align: right;
+              font-family: $font-bold;
+              font-size: $font-medium-small;
+            }
+          }
+        }
+      }
+    }
+    > .right {
+      width: 55%;
+      @include respond-to(portrait) {
+        width: 100%;
+      }
+      > .top {
+        color: #606060;
+        font-family: $font-bold;
+        font-size: $font-xx-large;
+        line-height: 1.15;
+        padding: 36px 4% 8px 4%;
+        width: 100%;
+        position: relative;
+        @include respond-to(portrait) {
+          padding: 24px 16px 8px 16px;
+          width: 100%;
+          font-size: $font-x-large;
+          padding-left: 0;
+        }
+      }
+      > .bottom {
+        padding: 8px 4% 8px 4%;
+        width: 75%;
+        height: 55%;
+        overflow-y: scroll;
+        position: relative;
+        > label {
+          display: block;
+          margin: 8px 0 16px 0;
+          > .label {
+            font-family: $font-bold;
+            margin-bottom: 8px;
+
+            &.button {
+              display: inline-block;
+              font-weight: 700;
+              text-decoration: underline;
+              color: #963200;
+              cursor: pointer;
+            }
+          }
+          > .tooltip {
+            font-family: $font-bold;
+            font-size: $font-medium-small;
+          }
+          > textarea, > input {
+            width: 100%;
+            padding: 4px 8px;
+            line-height: 1.5;
+            background-color: rgba(255, 255, 255, 0.75);
+            outline: none;
+            border: 1px solid #606060;
+            font-family: $font-bold;
+          }
+        }
+        @include respond-to(portrait) {
+          padding: 8px 12px;
+          width: 100%;
+          height: auto;
+          padding-left: 0;
+        }
+      }
+    }
+  }
 }

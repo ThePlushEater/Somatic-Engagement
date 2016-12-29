@@ -135,7 +135,7 @@ export default class Background extends React.Component {
         { type: "THEATER_STATIC", position: [2.77, 0], size: 0.85, speed: 1, opacity: 1, image: 1 },
       ],
       schools: [
-        { type: "SCHOOL_STATIC", position: [4, 0], size: 0.915, speed: 1, opacity: 1, image: 0 },
+        { type: "SCHOOL_STATIC", position: [4, 0], size: 0.85, speed: 1, opacity: 1, image: 0 },
       ]
     }
   }

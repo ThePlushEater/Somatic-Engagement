@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 
 import serverConfig from "./../../config/server";
 import { convertLinksOpenInNewWindow } from "./../../utils/link";
+import { postComment } from "./../../actions/postsActions";
+
+import Textarea from 'react-textarea-autosize';
 
 require('./index.scss');
 
@@ -22,6 +25,9 @@ export default class Content extends React.Component {
       theaterDriveinSize: 0,
       theaterDriveinBottomOffset: 0,
       theaterDriveinTextSize: 0,
+      comment: "",
+      author: "",
+      email: "",
     };
   }
   componentWillMount() {
@@ -41,7 +47,15 @@ export default class Content extends React.Component {
       theaterDriveinSize: 320 * scale,
       theaterDriveinBottomOffset: 64 * scale,
       theaterDriveinTextSize: 320 * scale * 0.06,
-    })
+    });
+
+    if (nextProps.post.commentUpdated) {
+      this.setState({
+        comment: "",
+        author: "",
+        email: "",
+      });
+    }
   }
   handleToggleLibrary(value, event) {
     if (this.props.window.size[0] < 1024) {
@@ -76,9 +90,12 @@ export default class Content extends React.Component {
     const page3 = ReactDom.findDOMNode(this.refs['page-3']);
     page3.scrollTop = 0;
   }
+  handleSubmitComment(event) {
+    this.props.dispatch(postComment(this.state.comment, this.state.author, this.state.email));
+  }
   render() {
     const { localization } = this.props.localization;
-    const { posts, project } = this.props.post;
+    const { posts, project, comments } = this.props.post;
     const { window } = this.props;
 
     const about = posts.map((item, index) => {
@@ -175,6 +192,22 @@ export default class Content extends React.Component {
       </div>
     }
 
+    let page4Left = comments.map((item, index) => {
+      return <li className="comment" key={"comment-" + index}>
+        <div className="text" dangerouslySetInnerHTML={{__html: item.content.rendered}} />
+        <div className="author" dangerouslySetInnerHTML={{__html: item.author_name}} />
+      </li>;
+    });
+
+    let commentTooltip;
+    if (this.props.post.commentUpdated) {
+      commentTooltip = <div className="tooltip">Your comment has been posted and will be listed once the admin approves.</div>;
+    } else {
+      commentTooltip = <div className="tooltip">
+        Your comment will be listed once the admin approves.
+      </div>;
+    }
+
 
     return(
       <div ref="content" className="content">
@@ -242,9 +275,63 @@ export default class Content extends React.Component {
           </div>
         </div>
         <div className="page page-4">
-
+          <div className="right">
+            <div className="top">
+              Leave a comment
+            </div>
+            <div className="bottom">
+              <label>
+                <div className="label">
+                  Comment
+                </div>
+                <Textarea
+                  value={this.state.comment}
+                  onChange={(event) => {
+                    this.props.dispatch({type: "RESET_COMMENT_POST_STATUS"});
+                    this.setState({comment: event.target.value});
+                  }} />
+              </label>
+              <label>
+                <div className="label">
+                  Name
+                </div>
+                <input type="text"
+                  value={this.state.author}
+                  onChange={(event) => {
+                    this.props.dispatch({type: "RESET_COMMENT_POST_STATUS"});
+                    this.setState({author: event.target.value});
+                  }} />
+              </label>
+              <label>
+                <div className="label">
+                  E-mail
+                </div>
+                <input type="email"
+                  value={this.state.email}
+                  onChange={(event) => {
+                    this.props.dispatch({type: "RESET_COMMENT_POST_STATUS"});
+                    this.setState({email: event.target.value});
+                  }} />
+              </label>
+              <label>
+                <div className="label button" onClick={this.handleSubmitComment.bind(this)}>
+                  Post Comment
+                </div>
+                { commentTooltip }
+              </label>
+            </div>
+          </div>
+          <div className="left">
+            <div className="top">
+              Comments
+            </div>
+            <div className="bottom">
+              <ul className="container">
+                { page4Left }
+              </ul>
+            </div>
+          </div>
         </div>
-
       </div>
     );
   }

@@ -57,7 +57,7 @@ export default class Middleground extends React.Component {
         { type: "PANEL_STATIC", position: [0.115, 0], size: 0.475, speed: 1, opacity: 1, image: 0 },
       ],
       kites: [
-        { type: "KITE_PASSIVE", position: [3.735, 0.135], size: 0.9, speed: 1, opacity: 1, image: 0 },
+        { type: "KITE_PASSIVE", position: [3.735, 0.135], size: 0.95, speed: 1, opacity: 1, image: 0 },
       ]
     }
   }

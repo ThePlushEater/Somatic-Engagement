@@ -32,11 +32,11 @@ export default class Background extends React.Component {
         { type: "CLOUD_STATIC", position: [1.13, 0.5], size: 0.225, speed: 0.85, opacity: 1, image: 0 },
         { type: "CLOUD_STATIC", position: [1.725, 0.8], size: 0.14, speed: 1, opacity: 1, image: 0 },
 
-        { type: "CLOUD_STATIC", position: [3.65, 0.125], size: 0.25, speed: 0.9, opacity: 1, image: 0 },
-        { type: "CLOUD_STATIC", position: [3.15, 0.1], size: 0.35, speed: 1, opacity: 1, image: 0 },
-        { type: "CLOUD_STATIC", position: [3.25, 0.515], size: 0.45, speed: 1, opacity: 1, image: 0 },
-        { type: "CLOUD_STATIC", position: [3.13, 0.35], size: 0.15, speed: 0.85, opacity: 1, image: 0 },
-        { type: "CLOUD_STATIC", position: [3.625, 0.25], size: 0.34, speed: 1, opacity: 1, image: 0 },
+        { type: "CLOUD_STATIC", position: [3.67, 0.175], size: 0.475, speed: 1, opacity: 1, image: 0 },
+        { type: "CLOUD_STATIC", position: [3.2, 0.12], size: 0.35, speed: 1, opacity: 1, image: 0 },
+        { type: "CLOUD_STATIC", position: [3.85, 0.615], size: 0.45, speed: 1, opacity: 0.75, image: 0 },
+        { type: "CLOUD_STATIC", position: [3.13, 0.35], size: 0.15, speed: 1, opacity: 1, image: 0 },
+        { type: "CLOUD_STATIC", position: [3.625, 0.7], size: 0.234, speed: 1, opacity: 1, image: 0 },
 
 
         { type: "CLOUD_STATIC", position: [0.125, 0.665], size: 0.125, speed: 0.65, opacity: 0.75, image: 0 },

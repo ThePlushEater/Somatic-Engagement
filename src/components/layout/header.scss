@@ -38,13 +38,13 @@
     display: -webkit-flex;
     display: flex;
 
-    width: 160px;
+    // width: 160px;
     margin: auto;
     color: #fefefe;
     font-weight: 700;
     font-size: $font-xx-large;
     cursor: pointer;
-    margin: auto 24px auto 36px;
+    margin: auto 0 auto 36px;
     letter-spacing: 4px;
 
     @include respond-to(portrait) {
@@ -52,9 +52,21 @@
       margin: auto 4px;
     }
 
-    > span {
-      font-family: $font-bold;
+    > div {
+      display: block;
+      font-family: $font-black;
       margin: auto;
+      display: table;
+      height: 100%;
+
+      > span {
+        display: table-cell;
+        vertical-align: middle;
+
+        &.after {
+          padding-left: 4px;
+        }
+      }
 
       @include respond-to(portrait) {
         display: none;
@@ -63,11 +75,13 @@
 
     > .logo {
       margin: auto;
-      width: 60px;
-      height: auto;
+      width: auto;
+      height: 40px;
+      max-height: 70%;
 
       @include respond-to(portrait) {
-        width: 28px;
+        width: auto;
+        height: 28px;
       }
 
       transform-origin: 50% 50%;
@@ -104,24 +118,34 @@
     list-style-type: none;
 
     > .item {
-      font-family: $font-bold;
-      font-size: $font-medium-small;
-      letter-spacing: 1px;
-      color: #fefefe;
-      font-weight: 700;
-      padding: 12px 16px;
-      cursor: pointer;
-      @include respond-to(portrait) {
-        font-size: $font-x-small;
-        padding: 6px 8px;
+      display: table;
+      height: 100%;
+      > span {
+        display: table-cell;
+        vertical-align: middle;
+        > span {
+          -webkit-transition-duration: 0.1s;
+             -moz-transition-duration: 0.1s;
+                  transition-duration: 0.1s;
+
+          padding: 12px 16px;
+          color: #fefefe;
+          font-weight: 700;
+          letter-spacing: 1px;
+          font-family: $font-black;
+          font-size: $font-medium-small;
+          cursor: pointer;
+          @include respond-to(portrait) {
+            font-size: $font-x-small;
+            padding: 6px 8px;
+          }
+        }
       }
 
-      -webkit-transition-duration: 0.1s;
-         -moz-transition-duration: 0.1s;
-              transition-duration: 0.1s;
-
       &:hover, &.active {
-        background-color: #8D6F54;
+        > span > span {
+          background-color: #8D6F54;
+        }
       }
     }
   }

@@ -45,7 +45,7 @@ export default class Middleground extends React.Component {
         { type: "FLOWER_PASSIVE", position: [3.95, 0.238], size: 0.8, speed: 1, opacity: 1, image: 1 },
       ],
       seesaws: [
-        { type: "SEESAW_PASSIVE", position: [0.435, 0.05], size: 1, speed: 1, opacity: 1, image: 0 },
+        { type: "SEESAW_PASSIVE", position: [0.45, 0.05], size: 1, speed: 1, opacity: 1, image: 0 },
       ],
       junglegyms: [
         { type: "JUNGLEGYM_PASSIVE", position: [0.725, 0.2], size: 1, speed: 1, opacity: 1, image: 0 },

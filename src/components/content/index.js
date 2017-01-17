@@ -214,17 +214,16 @@ export default class Content extends React.Component {
         <div className="page page-1">
           <div className="left">
             <div className="title">
-              <span>S</span><img className="logo" src="./kids.png" /><span>MA</span>
+              <img className="name" src="./title.png" />
+              <img className="logo" src="./kids.png" />
             </div>
-            <div className="sitename">
-              Somatic Engagement
-            </div>
-            <div className="description">
-              This site explores new ways of thinking<br/>about how children play digital games
-            </div>
+            <img className="description" src="./description.png" />
           </div>
           <div ref="post-about" className="right">
             <div className="container">
+              <div className="top">
+                What is Somatic Engagement?
+              </div>
               { about }
             </div>
           </div>

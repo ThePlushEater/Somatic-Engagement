@@ -1,15 +1,25 @@
 @import url('//fonts.googleapis.com/css?family=Open+Sans:400,400i,700');
-@import url('//fonts.googleapis.com/css?family=Cabin+Sketch:400,700');
+// @import url('//fonts.googleapis.com/css?family=Cabin+Sketch:400,700');
 
-// /* FONT PATH
-//  * -------------------------- */
-//
-// @font-face {
-//   font-family: 'Greco';
-//   src: url('./../fonts/Greco-Bold.eot');
-//   src: url('./../fonts/Greco-Bold.eot?#iefix') format('embedded-opentype'),
-//     url('./../fonts/Greco-Bold.woff') format('woff'),
-//     url('./../fonts/Greco-Bold.ttf') format('truetype');
-//   font-weight: normal;
-//   font-style: normal;
-// }
+/* FONT PATH
+ * -------------------------- */
+
+@font-face {
+  font-family: 'Lithos';
+  src: url('./../fonts/Lithos-Bold.eot');
+  src: url('./../fonts/Lithos-Bold.eot?#iefix') format('embedded-opentype'),
+    url('./../fonts/Lithos-Bold.woff') format('woff'),
+    url('./../fonts/Lithos-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lithos Pro';
+  src: url('./../fonts/LithosPro-Regular.eot');
+  src: url('./../fonts/LithosPro-Regular.eot?#iefix') format('embedded-opentype'),
+    url('./../fonts/LithosPro-Regular.woff') format('woff'),
+    url('./../fonts/LithosPro-Regular.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}

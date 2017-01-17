@@ -5,6 +5,7 @@ var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var HistoryApiFallback = require('connect-history-api-fallback');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpackUglifyJsPlugin = require('webpack-uglify-js-plugin');
 
 var SOURCE_DIR = path.resolve(__dirname, './src');
 var COMPONENTS_DIR = path.resolve(SOURCE_DIR, './components');
@@ -12,26 +13,34 @@ var LIBRARIES_DIR = path.resolve(__dirname, './libraries');
 var BUILD_DIR = path.resolve(__dirname, './dist');
 var MODULES_DIR = path.resolve(__dirname, './node_modules');
 
-var directory = "";
-var dargv = process.argv.filter(function(el) {
-  return el.indexOf("DIRECTORY") > -1; // any position match
+var env = "development";
+var dev = true;
+var dir = "";
+process.argv.forEach(function(element, index) {
+  if (element.indexOf("--env=") > -1) {
+    env = element.replace("--env=", "");
+    if (env == "production") {
+      dev = false;
+    }
+  } else if (element.indexOf("--dir=") > -1) {
+    dir = element.replace("--dir=", "");
+  }
 });
-if (dargv.length > 0) {
-  directory = dargv[0].replace("DIRECTORY=", ""); // ex> /soma
-}
 
-
-
-var devDefinePlugin = new webpack.DefinePlugin({
-  __DEV__: true,
-  __DIRECTORY__: JSON.stringify(directory),
+var definePlugin = new webpack.DefinePlugin({
+  __DEV__: false,
+  __DIRECTORY__: JSON.stringify(dir),
+  'process.env':{
+    'NODE_ENV': JSON.stringify(env) // production or develop
+  }
 });
 
 var vendorList = [
   'pixi.js'
 ];
 
-var corePluginList = [
+var corePlugins = [
+  definePlugin,
   new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"./js/vendor-bundle.js"),
   // new webpack.ProvidePlugin({
   //   // 'googletile': 'imports?this=>global!exports?googletile!googletile',
@@ -45,18 +54,17 @@ var corePluginList = [
     { from: path.join(SOURCE_DIR, "./.htaccess"), to: BUILD_DIR },
     { from: path.join(SOURCE_DIR, "./index.html"), to: path.join(BUILD_DIR, "./index.html") },
     { from: path.join(SOURCE_DIR, "./favicons/"), to: path.join(BUILD_DIR, "./favicons/") },
-    { from: path.join(SOURCE_DIR, "./localizations/"), to: path.join(BUILD_DIR, "./localizations/") },
-    { from: path.join(SOURCE_DIR, "./data/"), to: path.join(BUILD_DIR, "./data/") },
+    // { from: path.join(SOURCE_DIR, "./localizations/"), to: path.join(BUILD_DIR, "./localizations/") },
+    // { from: path.join(SOURCE_DIR, "./data/"), to: path.join(BUILD_DIR, "./data/") },
     { from: path.join(SOURCE_DIR, "./assets/"), to: path.join(BUILD_DIR, "./assets/") },
     { from: path.join(__dirname, "./libraries/"), to: path.join(BUILD_DIR, "./js/") }
-  ])
-];
-
-var devPluginList = [
-  devDefinePlugin,
+  ]),
   new ExtractTextPlugin("./css/app-bundle.css", {
     allChunks: true
   }),
+];
+
+var extraPlugins = [
   new BrowserSyncPlugin({
     host: process.env.IP || 'localhost',
     port: process.env.PORT || 3000,
@@ -69,7 +77,24 @@ var devPluginList = [
   })
 ];
 
-var loaderList = [
+if (env == 'production') {
+  extraPlugins.push(
+      new webpackUglifyJsPlugin({
+      cacheFolder: path.resolve(__dirname, 'public/cached_uglify/'),
+      debug: true,
+      minimize: true,
+      sourceMap: false,
+      output: {
+        comments: false
+      },
+      compressor: {
+        warnings: false
+      }
+    })
+  );
+}
+
+var loaders = [
   { test: /\.(jpg|png)$/, loader: "file-loader?limit=10000&name=/images/[hash].[ext]" },
   { test: /\.jsx?/, exclude: MODULES_DIR, loader: 'babel' },
   { test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass') },
@@ -88,9 +113,9 @@ var config = {
   output: {
     path: BUILD_DIR,
     filename: './js/[name]-bundle.js',
-    publicPath: directory
+    publicPath: dir
   },
-  plugins: corePluginList.concat(devPluginList),
+  plugins: corePlugins.concat(extraPlugins),
   devtool: 'eval',
   resolve: {
     // Absolute path that contains modules
@@ -107,7 +132,7 @@ var config = {
     }
   },
   module : {
-    loaders : loaderList
+    loaders : loaders
   }
 };
 

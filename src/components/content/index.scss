@@ -36,51 +36,27 @@
   > .page-1 {
     > .left {
       user-select: none;
-      padding: 36px 4%;
+      padding: 36px 6% 36px 4%;
       width: 50%;
       @include respond-to(portrait) {
         padding: 24px 16px;
         width: 100%;
       }
       > .title {
-        height: 120px;
-        pointer-events: none;
-        display: -webkit-box;
-        display: -moz-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-
-        margin: auto;
-        cursor: pointer;
+        position: relative;
         margin: auto 0;
 
-        -webkit-justify-content: flex-start; /* Safari 6.1+ */
-                justify-content: flex-start;
-
-        @include respond-to(portrait) {
-          height: 80px;
-        }
-        > span {
-          font-family: $font-bold;
-          color: #606060;
-          font-weight: 700;
-          font-size: $font-xxx-large;
-          @include respond-to(portrait) {
-            font-size: $font-xx-large;
-          }
-          letter-spacing: 4px;
-          margin: auto 2px;
-          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+        > .name {
+          width: 100%;
+          height: auto;
         }
 
         > .logo {
+          position: absolute;
+          left: 10.5%;
           margin: auto 0;
-          width: 120px;
-          height: auto;
-          @include respond-to(portrait) {
-            width: 60px;
-          }
+          width: auto;
+          height: 100%;
 
           transform-origin: 50% 50%;
           transform: rotate(0deg);
@@ -92,26 +68,8 @@
         }
       }
 
-      > .sitename {
-        padding: 16px 0 8px 0;
-        color: #606060;
-        font-family: $font-bold;
-        font-size: $font-xx-large;
-        line-height: 1.15;
-        @include respond-to(portrait) {
-          font-size: $font-x-large;
-        }
-      }
-
       > .description {
-        padding: 8px 0 8px 0;
-        color: #606060;
-        font-family: $font-bold;
-        font-size: $font-large;
-        line-height: 1.15;
-        @include respond-to(portrait) {
-          font-size: $font-medium;
-        }
+        width: 100%;
       }
     }
 
@@ -123,8 +81,14 @@
       }
 
       > .container {
+        color: #606060;
+        > .top {
+          font-size: $font-xx-large;
+          font-family: $font-bold;
+        }
+        font-family: $font-normal;
         position: absolute;
-        top: 48px;
+        top: 36px;
         right: 8%;
         width: 90%;
         height: 50%;

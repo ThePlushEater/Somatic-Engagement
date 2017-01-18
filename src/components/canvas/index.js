@@ -30,7 +30,7 @@ export default class Canvas extends React.Component {
   }
   componentDidMount() {
     const canvas = ReactDom.findDOMNode(this.refs['canvas']);
-    const renderer = PIXI.autoDetectRenderer(canvas.clientWidth * window.devicePixelRatio, canvas.clientHeight * window.devicePixelRatio);
+    const renderer = PIXI.autoDetectRenderer(canvas.clientWidth, canvas.clientHeight, {resolution: window.devicePixelRatio});
 
     canvas.appendChild(renderer.view);
     renderer.autoResize = true;

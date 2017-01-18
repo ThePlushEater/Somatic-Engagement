@@ -1,11 +1,25 @@
+@import "./mixin.scss";
+
 .alignleft {
   float: left;
   margin: 0.375em 1.75em 1.75em 0;
 }
 
+img, video {
+  height: auto;
+  max-width: 100%;
+}
+
 p {
   line-height: 1.75;
   margin: 0 4px 1.75em 4px;
+
+  > iframe {
+    max-width: 90%;
+    @include respond-to(portrait) {
+      max-width: 100%;
+    }
+  }
 }
 
 embed, iframe, object, video {
@@ -36,7 +50,7 @@ a {
   font-size: 1.15em;
 
   ul {
-    padding-left: 10px;
+    padding-left: 12px;
   }
 }
 

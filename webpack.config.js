@@ -17,13 +17,13 @@ var env = "development";
 var dev = true;
 var dir = "";
 process.argv.forEach(function(element, index) {
-  if (element.indexOf("--env=") > -1) {
-    env = element.replace("--env=", "");
+  if (element.indexOf("env=") > -1) {
+    env = element.replace("env=", "");
     if (env == "production") {
       dev = false;
     }
-  } else if (element.indexOf("--dir=") > -1) {
-    dir = element.replace("--dir=", "");
+  } else if (element.indexOf("dir=") > -1) {
+    dir = element.replace("dir=", "");
   }
 });
 
@@ -81,14 +81,15 @@ if (env == 'production') {
   extraPlugins.push(
       new webpackUglifyJsPlugin({
       cacheFolder: path.resolve(__dirname, 'public/cached_uglify/'),
-      debug: true,
+      debug: false,
       minimize: true,
       sourceMap: false,
       output: {
         comments: false
       },
       compressor: {
-        warnings: false
+        warnings: false,
+        drop_console: true,
       }
     })
   );

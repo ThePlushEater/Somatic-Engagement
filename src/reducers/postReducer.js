@@ -11,6 +11,7 @@ const defaultState = Immutable({
   posts: [],
   comments: [],
   commentUpdated: false,
+  commentsPostId: null,
 });
 
 export default function reducer(state = defaultState, action) {
@@ -23,15 +24,25 @@ export default function reducer(state = defaultState, action) {
     }
     case "FETCH_POSTS_FULFILLED" : {
       const projects = action.payload.data.filter((item) => {
-        if (item.categories.indexOf(serverConfig.iProject) > -1) {
+        if (item.acf.category == "project") {
           return true;
         }
         return false;
       });
+      const comments = action.payload.data.filter((item) => {
+        if (item.acf.category == "comments") {
+          return true;
+        }
+        return false;
+      });
+      let commentsPostId;
+      if (comments.length > 0) {
+        commentsPostId = comments[0].id;
+      }
       if (projects.length > 0) {
-        return state.merge({fetching: false, fetched: true, posts: action.payload.data, project: projects[0]});
+        return state.merge({fetching: false, fetched: true, posts: action.payload.data, commentsPostId: commentsPostId, project: projects[0]});
       } else {
-        return state.merge({fetching: false, fetched: true, posts: action.payload.data});
+        return state.merge({fetching: false, fetched: true, posts: action.payload.data, commentsPostId: commentsPostId});
       }
     }
     case "SET_PROJECT_ITEM": {

@@ -66,6 +66,7 @@ export default class App extends React.Component {
       .add("assets/kite-frame-2.png")
       .add("assets/kite-frame-3.png")
       .add("assets/kite-frame-4.png")
+      // .add("assets/texture-1.png")
       .load(this.handleAssetsLoaded.bind(this));
   }
   componentWillReceiveProps(nextProps) {

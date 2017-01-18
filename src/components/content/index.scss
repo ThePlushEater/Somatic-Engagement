@@ -36,7 +36,7 @@
   > .page-1 {
     > .left {
       user-select: none;
-      padding: 36px 6% 36px 4%;
+      padding: 8% 6% 36px 6%;
       width: 50%;
       @include respond-to(portrait) {
         padding: 24px 16px;
@@ -74,9 +74,11 @@
     }
 
     > .right {
-      width: 50%;
+      padding-top: 8%;
+      width: 45%;
       position: relative;
       @include respond-to(portrait) {
+        padding-top: 0;
         width: 100%;
       }
 
@@ -88,10 +90,9 @@
         }
         font-family: $font-normal;
         position: absolute;
-        top: 36px;
         right: 8%;
         width: 90%;
-        height: 50%;
+        height: 40%;
         overflow-y: scroll;
         padding: 0 8px;
         @include respond-to(portrait) {
@@ -110,7 +111,8 @@
       color: #963200;
     }
     @include respond-to(portrait) {
-      height: 80%;
+      height: 75%;
+      overflow-x: hidden;
     }
     position: relative;
     > .button-library {
@@ -125,6 +127,7 @@
       }
     }
     > .left {
+      padding: 6% 4% 0 6%;
       width: 50%;
       display: -webkit-box;
       display: -moz-box;
@@ -136,6 +139,7 @@
               flex-direction: column;
       @include respond-to(portrait) {
         width: 100%;
+        padding: 0;
         &.hide {
           display: block;
           > .bottom {
@@ -148,16 +152,17 @@
         color: #606060;
         font-family: $font-bold;
         font-size: $font-xx-large;
-        line-height: 1.15;
-        padding: 36px 4% 8px 10%;
         width: 100%;
         position: relative;
+        padding-bottom: 16px;
+        padding-left: 16px;
         @include respond-to(portrait) {
-          padding: 24px 16px 8px 16px;
+          padding: 24px 16px 8px 24px;
           width: 100%;
           font-size: $font-x-large;
         }
         &.research-back {
+          text-decoration: underline;
           font-size: $font-medium;
           @include respond-to(portrait) {
             font-size: $font-medium;
@@ -165,9 +170,8 @@
         }
       }
       > .bottom {
-        padding: 8px 4% 28% 10%;
         width: 100%;
-        height: 80%;
+        height: 50%;
         position: relative;
         @include respond-to(portrait) {
           padding: 8px 12px;
@@ -355,6 +359,7 @@
           color: #000000;
           padding: 8px 12px;
           cursor: pointer;
+          text-decoration: underline;
         }
       }
     }
@@ -415,6 +420,7 @@
             color: #000000;
             padding-left: 4%;
             overflow: hidden;
+            white-space: nowrap;
 
             &:hover, &.active {
               background-color: #4a271c;
@@ -438,7 +444,7 @@
       > .wrapper {
         position: absolute;
         width: 100%;
-        height: 77.5%;
+        height: 85%;
         @include respond-to(portrait) {
           height: 90%;
         }
@@ -476,7 +482,7 @@
               font-family: $font-bold;
               font-size: $font-x-large;
               line-height: 1.15;
-              padding: 8px;
+              padding: 8px 8px 16px 8px;
             }
             > .text {
               font-family: $font-normal;
@@ -509,14 +515,15 @@
     display: -webkit-flex;
     display: flex;
 
-    -webkit-flex-direction: row-reverse;
-            flex-direction: row-reverse;
+    -webkit-flex-direction: row;
+            flex-direction: row;
 
     @include respond-to(portrait) {
       display: block;
       overflow-y: scroll;
     }
     > .left {
+      display: none !important;
       width: 45%;
       display: -webkit-box;
       display: -moz-box;
@@ -595,16 +602,20 @@
       }
     }
     > .right {
+      padding-top: 6%;
+      padding-left: 6%;
       width: 55%;
       @include respond-to(portrait) {
         width: 100%;
+        padding-top: 0;
+        padding-left: 0;
       }
       > .top {
         color: #606060;
         font-family: $font-bold;
         font-size: $font-xx-large;
         line-height: 1.15;
-        padding: 36px 4% 8px 4%;
+        padding: 0 4% 16px 4%;
         width: 100%;
         position: relative;
         @include respond-to(portrait) {
@@ -616,7 +627,7 @@
       }
       > .bottom {
         padding: 8px 4% 8px 4%;
-        width: 75%;
+        width: 85%;
         height: 55%;
         overflow-y: scroll;
         position: relative;

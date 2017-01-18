@@ -39,13 +39,18 @@ export default class Content extends React.Component {
   componentWillReceiveProps(nextProps) {
     setTimeout(function() {
       convertLinksOpenInNewWindow(ReactDom.findDOMNode(this.refs['content']));
+
+      const iframes = document.querySelectorAll('iframe');
+      iframes.forEach((element) => {
+        element.height = element.clientWidth * 9 / 16;
+      });
     }.bind(this), 100);
 
     const { window } = nextProps;
     let scale = Math.min(window.size[0] / window.minSize[0], 1);
     this.setState({
       theaterDriveinSize: 320 * scale,
-      theaterDriveinBottomOffset: 64 * scale,
+      theaterDriveinBottomOffset: 32 * scale,
       theaterDriveinTextSize: 320 * scale * 0.06,
     });
 
@@ -99,32 +104,44 @@ export default class Content extends React.Component {
     const { window } = this.props;
 
     const about = posts.map((item, index) => {
-      if (item.categories.length > 0 && item.categories.indexOf(serverConfig.iAbout) > -1)  {
+      if (item.acf.category == "about") {
         return <div className="post" key={"about-" + index} dangerouslySetInnerHTML={{__html: item.content.rendered}} />;
       }
       return null;
     });
 
     const news = posts.map((item, index) => {
-      if (item.categories.length > 0 && item.categories.indexOf(serverConfig.iNews) > -1)  {
+      if (item.acf.category == "news") {
         return <div className="post" key={"news-" + index} dangerouslySetInnerHTML={{__html: item.content.rendered}} />;
       }
       return null;
     });
 
-    const researches = posts.map((item, index) => {
-      if (item.categories.length > 0 && item.categories.indexOf(serverConfig.iResearch) > -1)  {
-        return <li className="post" key={"research-" + index}>
-          <div dangerouslySetInnerHTML={{__html: item.title.rendered}} onClick={this.handleClickResearchItem.bind(this, item)}/>
-        </li>;
+    let researches = posts.filter((item, index) => {
+      if (item.acf.category == "research") {
+        return true;
       }
-      return null;
+      return false;
+    });
+
+    researches = researches.asMutable().sort(function(a, b) {
+      if (parseInt(a.acf.importance) > parseInt(b.acf.importance))
+        return -1;
+      if (parseInt(a.acf.importance) < parseInt(b.acf.importance))
+        return 1;
+      return 0;
+    });
+
+    researches = researches.map((item, index) => {
+      return <li className="post" key={"research-" + index}>
+        <div dangerouslySetInnerHTML={{__html: item.title.rendered}} onClick={this.handleClickResearchItem.bind(this, item)}/>
+      </li>;
     });
 
     let projectSize = 0;
 
     let projects = posts.map((item, index) => {
-      if (item.categories.indexOf(serverConfig.iProject) > -1 && projectSize < 3) {
+      if (item.acf.category == "project" && projectSize < 3) {
         projectSize++;
         let active = "";
         if (project && item.id == project.id) {
@@ -165,11 +182,11 @@ export default class Content extends React.Component {
       </div>;
     } else {
       page1Top = <div className="top" onClick={this.handleToggleLibrary.bind(this, false)}>
-        SOMA News
+        SOMKIDS News
       </div>;
       page2Right = <div className={"right" + openLibrary}>
         <div className="top" onClick={this.handleToggleLibrary.bind(this, true)}>
-          SOMA Research
+          SOMKIDS Research
         </div>
         <div className="middle">
           <ul className="container">
@@ -178,7 +195,7 @@ export default class Content extends React.Component {
         </div>
         <div className="bottom">
           <div className="button" onClick={this.handleCloseLibrary.bind(this)}>
-            Leave SOMA library
+            Leave SOMKIDS library
           </div>
         </div>
       </div>;
@@ -201,10 +218,10 @@ export default class Content extends React.Component {
 
     let commentTooltip;
     if (this.props.post.commentUpdated) {
-      commentTooltip = <div className="tooltip">Your comment has been posted and will be listed once the admin approves.</div>;
+      commentTooltip = <div className="tooltip">Your message has been sent successfully.</div>;
     } else {
       commentTooltip = <div className="tooltip">
-        Your comment will be listed once the admin approves.
+        Your will be sent to Krystina Madej.
       </div>;
     }
 
@@ -221,9 +238,6 @@ export default class Content extends React.Component {
           </div>
           <div ref="post-about" className="right">
             <div className="container">
-              <div className="top">
-                What is Somatic Engagement?
-              </div>
               { about }
             </div>
           </div>
@@ -276,12 +290,12 @@ export default class Content extends React.Component {
         <div className="page page-4">
           <div className="right">
             <div className="top">
-              Leave a comment
+              Leave a Message
             </div>
             <div className="bottom">
               <label>
                 <div className="label">
-                  Comment
+                  Message
                 </div>
                 <Textarea
                   value={this.state.comment}
@@ -314,16 +328,16 @@ export default class Content extends React.Component {
               </label>
               <label>
                 <div className="label button" onClick={this.handleSubmitComment.bind(this)}>
-                  Post Comment
+                  Send a Message
                 </div>
                 { commentTooltip }
               </label>
             </div>
           </div>
           <div className="left">
-            <div className="top">
+            <h2 className="top">
               Comments
-            </div>
+            </h2>
             <div className="bottom">
               <ul className="container">
                 { page4Left }

@@ -1,4 +1,5 @@
 import axios from "axios";
+import store from "./../store/store";
 
 import serverConfig from "./../config/server";
 
@@ -28,7 +29,7 @@ export function postComment(content, author, email) {
       "content": content,
       "author_name": author,
       "author_email": email,
-      "post": serverConfig.iCommentsPost,
+      "post": store.getState().post.commentsPostId,
     }, config),
   }
 }
